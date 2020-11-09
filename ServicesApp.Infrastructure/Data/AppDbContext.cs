@@ -7,9 +7,9 @@ using ServicesApp.Core.Entities;
 
 namespace ServicesApp.Infrastructure.Data
 {
-        public class ApplicationUserContext : IdentityDbContext<User>
+        public class ApplicationContext : IdentityDbContext<User>
         {
-            public ApplicationUserContext(DbContextOptions<ApplicationUserContext> options)
+            public ApplicationContext(DbContextOptions<ApplicationContext> options)
                 : base(options)
             {
                 Database.EnsureCreated();
