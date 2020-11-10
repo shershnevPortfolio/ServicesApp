@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using AutoMapper;
+using ServicesApp.Core.DTOs;
+using ServicesApp.Core.Entities;
 
 namespace SocialMedia.Infrastructure.Mappings
 {
@@ -9,7 +11,7 @@ namespace SocialMedia.Infrastructure.Mappings
     {
         public AutomapperProfile()
         {
-      
+            CreateMap<RegisterDTO, User>();
         }
     }
 }
