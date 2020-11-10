@@ -40,6 +40,8 @@ namespace ServicesApp.Api
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddIdentityCore<User>()
                 .AddEntityFrameworkStores<ApplicationContext>();
 
