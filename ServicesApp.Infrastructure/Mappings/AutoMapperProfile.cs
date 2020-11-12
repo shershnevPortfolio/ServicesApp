@@ -12,6 +12,7 @@ namespace SocialMedia.Infrastructure.Mappings
         public AutomapperProfile()
         {
             CreateMap<RegisterDTO, User>();
+            CreateMap<UserDTO, User>().ReverseMap();
         }
     }
 }
