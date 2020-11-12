@@ -25,10 +25,10 @@ namespace ServicesApp.Api.Controllers
             _mapper = mapper;
 
         }
-       
+
         [Route("register")]
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterDTO registerData)
+        public async Task<IActionResult> Register([FromQuery] RegisterDTO registerData)
         {
             var user = _mapper.Map<User>(registerData);
             var result = await _userManager.CreateAsync(user, registerData.Password);
@@ -38,6 +38,23 @@ namespace ServicesApp.Api.Controllers
             }
 
             return BadRequest(result.Errors);
+        }
+
+
+        [Route("login")]
+        [HttpPost]
+        public async Task<IActionResult> Login([FromQuery] LoginDTO loginData)
+        {
+            var user = await _userManager.FindByNameAsync(loginData.UserName);
+            if(user != null && await _userManager.CheckPasswordAsync(user, loginData.Password))
+            {
+                var token = await _userManager.CreateSecurityTokenAsync(user);
+                return Ok(new { token = token, user = _mapper.Map<UserDTO>(user) }); ;
+            }
+            else
+            {
+                return BadRequest(new { message = "inncorrect login data" } );
+            }
         }
 
     }
