@@ -7,7 +7,6 @@ namespace ServicesApp.Core.Entities
 {
     public class SubCategory : BaseEntity
     {
-        [Required]
         public string Name { get; set; }
 
         public int CategoryId { get; set; }
