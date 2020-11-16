@@ -14,6 +14,10 @@ namespace ServicesApp.Infrastructure.Data
             {
                 Database.EnsureCreated();
             }
-        }
+
+            public virtual DbSet<Category> Categories { get; set; }
+            public virtual DbSet<SubCategory> SubCategories { get; set; }
+    }
+
 
 }
