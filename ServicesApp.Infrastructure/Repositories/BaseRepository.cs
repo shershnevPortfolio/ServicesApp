@@ -43,9 +43,7 @@ namespace ServicesApp.Infrastructure.Repositories
         public async Task Delete(int id)
         {
             T entity = await GetById(id);
-
             _entities.Remove(entity);
         }
-
     }
 }

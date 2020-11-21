@@ -8,15 +8,15 @@ using ServicesApp.Infrastructure.Data;
 
 namespace ServicesApp.Infrastructure.Repositories
 {
-    class UnitOfWork : IUnitOfWork, IDisposable
+    public class UnitOfWork : IUnitOfWork, IDisposable
     {
         private readonly ApplicationContext _context;
 
-        private readonly IRepository<Category> _categoryRepository;
+        private readonly ICategoryRepository _categoryRepository;
 
         private readonly IRepository<SubCategory> _subCategoryRepository;
 
-        public IRepository<Category> CategoryRepository => _categoryRepository ?? new BaseRepository<Category>(_context);
+        public ICategoryRepository CategoryRepository => _categoryRepository ?? new CategoryRepository(_context);
 
         public IRepository<SubCategory> SubCategoryRepository => _subCategoryRepository ?? new BaseRepository<SubCategory>(_context);
 

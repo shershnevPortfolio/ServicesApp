@@ -8,7 +8,7 @@ namespace ServicesApp.Core.Interfaces
 {
     public interface IUnitOfWork
     {
-        IRepository<Category> CategoryRepository { get; }
+        ICategoryRepository CategoryRepository { get; }
 
         IRepository<SubCategory> SubCategoryRepository { get; }
 
