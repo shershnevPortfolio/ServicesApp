@@ -28,7 +28,7 @@ namespace ServicesApp.Api.Controllers
 
         [Route("register")]
         [HttpPost]
-        public async Task<IActionResult> Register([FromQuery] RegisterDTO registerData)
+        public async Task<IActionResult> Register(RegisterDTO registerData)
         {
             var user = _mapper.Map<User>(registerData);
             var result = await _userManager.CreateAsync(user, registerData.Password);
@@ -43,7 +43,7 @@ namespace ServicesApp.Api.Controllers
 
         [Route("login")]
         [HttpPost]
-        public async Task<IActionResult> Login([FromQuery] LoginDTO loginData)
+        public async Task<IActionResult> Login(LoginDTO loginData)
         {
             var user = await _userManager.FindByNameAsync(loginData.UserName);
             if(user != null && await _userManager.CheckPasswordAsync(user, loginData.Password))
