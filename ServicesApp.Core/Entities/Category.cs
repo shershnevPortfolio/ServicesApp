@@ -9,6 +9,6 @@ namespace ServicesApp.Core.Entities
     {
        public string  Name { get; set;} 
 
-       public List<SubCategory> SubCategories { get; set; }
+       public virtual List<SubCategory> SubCategories { get; set; }
     }
 }

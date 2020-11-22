@@ -12,7 +12,7 @@ namespace ServicesApp.Infrastructure.Data
             public ApplicationContext(DbContextOptions<ApplicationContext> options)
                 : base(options)
             {
-                Database.EnsureCreated();
+                Database.Migrate();
             }
 
             public virtual DbSet<Category> Categories { get; set; }

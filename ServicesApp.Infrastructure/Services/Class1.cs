@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ServicesApp.Infrastructure.Services
 {
-    class Class1
+     class Class1
     {
     }
 }

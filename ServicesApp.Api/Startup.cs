@@ -15,10 +15,15 @@ using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Newtonsoft;
 using AutoMapper;
 using ServicesApp.Core.Options;
 using ServicesApp.Core.Entities;
+using ServicesApp.Core;
 using ServicesApp.Infrastructure.Data;
+using ServicesApp.Infrastructure.Repositories;
+using ServicesApp.Core.Interfaces;
+using ServicesApp.Core.Services;
 
 namespace ServicesApp.Api
 {
@@ -38,12 +43,16 @@ namespace ServicesApp.Api
             services.AddDbContext<ApplicationContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                options.UseLazyLoadingProxies();
             });
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddIdentityCore<User>()
                 .AddEntityFrameworkStores<ApplicationContext>();
+
+            services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -85,7 +94,10 @@ namespace ServicesApp.Api
                 };
             });
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options => 
+            {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
 
         }
 
