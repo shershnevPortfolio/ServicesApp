@@ -3,6 +3,7 @@ using ServicesApp.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Ardalis.Result;
 using System.Threading.Tasks;
 
 namespace ServicesApp.Core.Services
@@ -10,19 +11,25 @@ namespace ServicesApp.Core.Services
     public class CategoryService : ICategoryService
     {
         private readonly IUnitOfWork _unitOfWork;
-        public CategoryService(IUnitOfWork unitOfWork)
+
+        private readonly IResultCreationService _resultCreationService;
+
+        public CategoryService(IUnitOfWork unitOfWork, IResultCreationService resultCreationService)
         {
             _unitOfWork = unitOfWork;
+            _resultCreationService = resultCreationService;
         }
 
-        public IAsyncEnumerable<Category> GetCategoties()
+        public Result<IAsyncEnumerable<Category>> GetCategoties()
         {
-            return _unitOfWork.CategoryRepository.GetAll();
+            var categories = _unitOfWork.CategoryRepository.GetAll();
+            return _resultCreationService.CreateResult<IAsyncEnumerable<Category>>(categories);
         }
 
-        public async Task<Category> GetCategory(int id)
+        public async Task<Result<Category>> GetCategory(int id)
         {
-            return await _unitOfWork.CategoryRepository.GetById(id);
+            var category = await _unitOfWork.CategoryRepository.GetById(id);
+            return _resultCreationService.CreateResult<Category>(category);
         }
 
         public async Task CreateCategory(Category category)
@@ -31,9 +38,11 @@ namespace ServicesApp.Core.Services
             await _unitOfWork.SaveChangesAsync();
         }
         
-        public async Task<IEnumerable<SubCategory>> GetSubcategoriesByCategory(int id)
+        public async Task<Result<IEnumerable<SubCategory>>> GetSubcategoriesByCategory(int id)
         {
-            return await _unitOfWork.CategoryRepository.GetSubcategories(id);
+            var subCategories = await _unitOfWork.CategoryRepository.GetSubcategories(id);
+            return _resultCreationService.CreateResult<IEnumerable<SubCategory>>(subCategories);
+
         }
     }
 }

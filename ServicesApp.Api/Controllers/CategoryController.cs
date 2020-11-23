@@ -5,13 +5,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ServicesApp.Core.Entities;
 using ServicesApp.Core.Interfaces;
+using Ardalis.Result.AspNetCore;
+using Ardalis.Result;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 
 namespace ServicesApp.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [TranslateResultToActionResult]
+
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _categoryService;
@@ -22,40 +27,23 @@ namespace ServicesApp.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public Result<IAsyncEnumerable<Category>> Get()
         {
-            var categories = _categoryService.GetCategoties();
-            if (categories == null)
-            {
-                return NotFound(new { message = "not found" });
-            }
-
-            return Ok(categories);
+            return _categoryService.GetCategoties();      
         }
 
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<Result<Category>> Get(int id)
         {
-            var category = await _categoryService.GetCategory(id);
-            if(category == null)
-            {
-                return NotFound(new { message = "not found" });
-            }
-
-            return Ok(category);
+             return await _categoryService.GetCategory(id);
         }
 
         [HttpGet("{id}/subcategories")]
-        public async Task<IActionResult> GetSubcategories(int id)
+        public async Task<Result<IEnumerable<SubCategory>>> GetSubcategories(int id)
         {
-            var subCategories = await _categoryService.GetSubcategoriesByCategory(id);
-            if (subCategories == null)
-            {
-                return NotFound(new { message = "not found" });
-            }
-
-            return Ok(subCategories);
+            return await _categoryService.GetSubcategoriesByCategory(id);
+           
         }
 
 

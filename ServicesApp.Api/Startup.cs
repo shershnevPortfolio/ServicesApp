@@ -53,6 +53,7 @@ namespace ServicesApp.Api
 
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<IResultCreationService, ResultCreationService>();
 
             services.Configure<IdentityOptions>(options =>
             {
