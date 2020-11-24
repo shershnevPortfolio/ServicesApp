@@ -10,7 +10,7 @@ namespace ServicesApp.Core.Services
     {
         public Result<T> CreateResult<T>(T result)
         {
-            return Result<T>.NotFound();
+            throw new NotImplementedException();
         }
     }
 }

@@ -42,7 +42,6 @@ namespace ServicesApp.Core.Services
         {
             var subCategories = await _unitOfWork.CategoryRepository.GetSubcategories(id);
             return _resultCreationService.CreateResult<IEnumerable<SubCategory>>(subCategories);
-
         }
     }
 }

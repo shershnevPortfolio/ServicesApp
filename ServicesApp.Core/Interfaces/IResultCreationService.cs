@@ -7,6 +7,6 @@ namespace ServicesApp.Core.Interfaces
 {
     public interface IResultCreationService
     {
-        public Result<T> CreateResult<T>(T result);
+        Result<T> CreateResult<T>(T result);
     }
 }

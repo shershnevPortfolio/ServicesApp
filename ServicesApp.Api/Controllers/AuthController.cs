@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using ServicesApp.Core.Entities;
 using AutoMapper;
 using ServicesApp.Core.DTOs;
+using ServicesApp.Core.Interfaces;
+using Ardalis.Result;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,28 +18,18 @@ namespace ServicesApp.Api.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private UserManager<User> _userManager;
-        private IMapper _mapper;
+        private IAuthenticationService _authenticationService;
 
-        public AuthController(UserManager<User> userManager, IMapper mapper)
+        public AuthController(IAuthenticationService authenticationService)
         {
-            _userManager = userManager;
-            _mapper = mapper;
-
+            _authenticationService = authenticationService;
         }
 
         [Route("register")]
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterDTO registerData)
+        public async Task<Result<IdentityResult>> Register(RegisterDTO registerData)
         {
-            var user = _mapper.Map<User>(registerData);
-            var result = await _userManager.CreateAsync(user, registerData.Password);
-            if (result.Succeeded)
-            {
-                return Ok(result);
-            }
-
-            return BadRequest(result.Errors);
+            return await _authenticationService.RegisterUser(registerData);
         }
 
 
@@ -45,16 +37,7 @@ namespace ServicesApp.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginDTO loginData)
         {
-            var user = await _userManager.FindByNameAsync(loginData.UserName);
-            if(user != null && await _userManager.CheckPasswordAsync(user, loginData.Password))
-            {
-                var token = await _userManager.CreateSecurityTokenAsync(user);
-                return Ok(new { token = token, user = _mapper.Map<UserDTO>(user) }); ;
-            }
-            else
-            {
-                return BadRequest(new { message = "inncorrect login data" } );
-            }
+            return await _authenticationService.Login(loginData);
         }
 
     }
