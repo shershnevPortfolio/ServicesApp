@@ -7,6 +7,7 @@ namespace ServicesApp.Core.DTOs
     public class RegisterDTO
     {
         public string Password { get; set; }
+
         public string UserName { get; set; }
     }
 }
