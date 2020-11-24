@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ServicesApp.Core.Interfaces
 {
-    interface IValidationService
+    public interface IValidationService
     {
         void ValidateQueryResult<T>(T result);
 

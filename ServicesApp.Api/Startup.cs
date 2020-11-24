@@ -54,6 +54,7 @@ namespace ServicesApp.Api
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IResultCreationService, ResultCreationService>();
+            services.AddTransient<IValidationService, ValidationService>();
 
             services.Configure<IdentityOptions>(options =>
             {
