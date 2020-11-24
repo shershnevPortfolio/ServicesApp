@@ -51,8 +51,9 @@ namespace ServicesApp.Api
             services.AddIdentityCore<User>()
                 .AddEntityFrameworkStores<ApplicationContext>();
 
-            services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<ICategoryService, ICategoryService>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<ISubCategoryService, SubCategoryService>();
 
             services.Configure<IdentityOptions>(options =>
             {
