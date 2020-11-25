@@ -55,7 +55,9 @@ namespace ServicesApp.Api
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<ISubCategoryService, SubCategoryService>();
             services.AddTransient<IResultCreationService, ResultCreationService>();
-            services.AddTransient<IValidationService, ValidationService>();
+            services.AddTransient<IValidationService, ValidationService>(provider => {
+                var handlerFactory = new HandlerFactory();
+            });
 
             services.Configure<IdentityOptions>(options =>
             {

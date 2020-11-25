@@ -35,7 +35,7 @@ namespace ServicesApp.Api.Controllers
 
         [Route("login")]
         [HttpPost]
-        public async Task<IActionResult> Login(LoginDTO loginData)
+        public async Task<Result<UserDTO>> Login(LoginDTO loginData)
         {
             return await _authenticationService.Login(loginData);
         }

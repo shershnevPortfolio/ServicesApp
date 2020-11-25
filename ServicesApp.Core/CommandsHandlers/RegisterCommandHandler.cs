@@ -6,9 +6,9 @@ using System.Text;
 
 namespace ServicesApp.Core.CommandsHandlers
 {
-    class RegisterCommandHandler : ICommandHandler<LoginCommand>
+    class RegisterCommandHandler : ICommandHandler<RegisterCommand>
     {
-        public void Handle(LoginCommand command)
+        public void Handle(RegisterCommand command)
         {
             throw new NotImplementedException();
         }
