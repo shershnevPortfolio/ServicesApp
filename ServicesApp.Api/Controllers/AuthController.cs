@@ -9,6 +9,7 @@ using AutoMapper;
 using ServicesApp.Core.DTOs;
 using ServicesApp.Core.Interfaces;
 using Ardalis.Result;
+using ServicesApp.Core.Commands;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -18,27 +19,29 @@ namespace ServicesApp.Api.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private IAuthenticationService _authenticationService;
+        private readonly ICommandHandler<LoginCommand> _loginCommandHandler;
+        private readonly ICommandHandler<RegisterCommand> _registerCommandHandler;
 
-        public AuthController(IAuthenticationService authenticationService)
+        public AuthController(ICommandHandler<LoginCommand> loginCommandHandler, ICommandHandler<RegisterCommand> registerCommandHandler)
         {
-            _authenticationService = authenticationService;
+            _loginCommandHandler = loginCommandHandler;
+            _registerCommandHandler = registerCommandHandler;
         }
 
         [Route("register")]
         [HttpPost]
-        public async Task<Result<IdentityResult>> Register(RegisterDTO registerData)
+        public async Task Register(RegisterCommand registerData)
         {
-            return await _authenticationService.RegisterUser(registerData);
+            _registerCommandHandler.Handle(registerData);
         }
 
 
         [Route("login")]
         [HttpPost]
-        public async Task<Result<UserDTO>> Login(LoginDTO loginData)
+        public async Task Login(LoginCommand loginData)
         {
-            return await _authenticationService.Login(loginData);
-        }
+            _loginCommandHandler.Handle(loginData);
 
+        }
     }
 }

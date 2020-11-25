@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Reflection; 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -15,6 +16,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using ServicesApp.Core.Factories;
 using Newtonsoft;
 using AutoMapper;
 using ServicesApp.Core.Options;
@@ -24,6 +26,8 @@ using ServicesApp.Infrastructure.Data;
 using ServicesApp.Infrastructure.Repositories;
 using ServicesApp.Core.Interfaces;
 using ServicesApp.Core.Services;
+using ServicesApp.Core.Proxies;
+using ServicesApp.Core.CommandsHandlers;
 
 namespace ServicesApp.Api
 {
@@ -51,15 +55,15 @@ namespace ServicesApp.Api
             services.AddIdentityCore<User>()
                 .AddEntityFrameworkStores<ApplicationContext>();
 
-            services.AddTransient<ICategoryService, ICategoryService>();
+            services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<ISubCategoryService, SubCategoryService>();
             services.AddTransient<IResultCreationService, ResultCreationService>();
-            services.AddTransient<IValidationService, ValidationService>(provider => {
-                var handlerFactory = new HandlerFactory();
-            });
-
-            services.Configure<IdentityOptions>(options =>
+            services.AddTransient<IValidationService, ValidationService>();
+            services.AddScoped<ICommandHandlerFactory, CommandHandlerFactory>();
+            services.AddTransient(typeof(ICommandHandler<>), typeof(CommandHandlerProxy<>));
+    
+       services.Configure<IdentityOptions>(options =>
             {
                 // Password settings.
                 options.Password.RequireDigit = true;
@@ -129,5 +133,13 @@ namespace ServicesApp.Api
                 endpoints.MapControllers();
             });
         }
+
+        
+    }
+    internal class HandlerResolver : IHandlerResolver
+    {
+    }
+    internal interface IHandlerResolver
+    {
     }
 }

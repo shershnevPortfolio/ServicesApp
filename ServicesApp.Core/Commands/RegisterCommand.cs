@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ServicesApp.Core.Commands
 {
-    class RegisterCommand : ICommand
+    public class RegisterCommand : ICommand
     {
         public string Password { get; set; }
 

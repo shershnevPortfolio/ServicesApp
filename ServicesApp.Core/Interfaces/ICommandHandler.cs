@@ -9,4 +9,9 @@ namespace ServicesApp.Core.Interfaces
         void Handle(TCommand command);
 
     }
+
+    public interface ICommnandHandler
+    {
+        void Handle<TCommand>(TCommand command);
+    }
 }
