@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ServicesApp.Core.Interfaces
 {
-    public interface ICategoryService
+    internal interface ICategoryService
     {
         Task<Result<Category>> GetCategory(int id);
 

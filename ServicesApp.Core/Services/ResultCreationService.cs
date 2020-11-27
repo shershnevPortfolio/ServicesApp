@@ -6,7 +6,7 @@ using ServicesApp.Core.Interfaces;
 
 namespace ServicesApp.Core.Services
 {
-    public class ResultCreationService : IResultCreationService
+    internal class ResultCreationService : IResultCreationService
     {
         public Result<T> CreateResult<T>(T result)
         {

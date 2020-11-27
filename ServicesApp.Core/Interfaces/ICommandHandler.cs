@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ServicesApp.Core.Interfaces
 {
-    public interface ICommandHandler<TCommand> 
+    internal interface ICommandHandler<TCommand> 
     {
         void Handle(TCommand command);
 

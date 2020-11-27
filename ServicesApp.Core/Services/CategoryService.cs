@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ServicesApp.Core.Services
 {
-    public class CategoryService : ICategoryService
+    internal class CategoryService : ICategoryService
     {
         private readonly IUnitOfWork _unitOfWork;
 

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ServicesApp.Core.Interfaces
 {
-    public interface ICommandHandlerFactory
+    internal interface ICommandHandlerFactory
     {
         ICommandHandler<TCommand> CreateHandlerFor<TCommand>();
     }

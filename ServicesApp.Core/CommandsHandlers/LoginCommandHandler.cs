@@ -6,7 +6,7 @@ using ServicesApp.Core.Interfaces;
 
 namespace ServicesApp.Core.CommandsHandlers
 {
-    public class LoginCommandHandler : ICommandHandler<LoginCommand>
+    internal class LoginCommandHandler : ICommandHandler<LoginCommand>
     {
         private readonly IAuthenticationService _authenticationService;
 

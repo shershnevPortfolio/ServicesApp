@@ -19,31 +19,31 @@ namespace ServicesApp.Api.Controllers
 
     public class CategoryController : ControllerBase
     {
-        private readonly ICategoryService _categoryService;
+        private readonly ICommandHandler _commandHandler;
 
-        public CategoryController(ICategoryService categoryService)
+        public CategoryController(ICommandHandler commandHandler)
         {
-            _categoryService = categoryService;
+            _commandHandler = commandHandler;
         }
 
         [HttpGet]
         public Result<IAsyncEnumerable<Category>> Get()
         {
-            return _categoryService.GetCategoties();      
+            throw new NotImplementedException();
+                 
         }
 
 
         [HttpGet("{id}")]
         public async Task<Result<Category>> Get(int id)
         {
-             return await _categoryService.GetCategory(id);
+            throw new NotImplementedException();
         }
 
         [HttpGet("{id}/subcategories")]
         public async Task<Result<IEnumerable<SubCategory>>> GetSubcategories(int id)
         {
-            return await _categoryService.GetSubcategoriesByCategory(id);
-           
+            throw new NotImplementedException();
         }
 
 
@@ -51,8 +51,7 @@ namespace ServicesApp.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(Category category)
         {
-            await _categoryService.CreateCategory(category);
-            return Ok(new { data =  category });
+            throw new NotImplementedException();
         }
     }
 }

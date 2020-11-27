@@ -5,7 +5,7 @@ using ServicesApp.Core.Interfaces;
 
 namespace ServicesApp.Core.Services
 {
-    public class ValidationService : IValidationService
+    internal class ValidationService : IValidationService
     {
         public void ValidateQuery<T>(T Query)
         {

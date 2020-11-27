@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ServicesApp.Core.Interfaces
 {
-    interface ICommand
+    internal interface ICommand
     {
     }
 }

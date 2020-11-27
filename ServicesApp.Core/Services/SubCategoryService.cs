@@ -8,7 +8,7 @@ using ServicesApp.Core.Interfaces;
 
 namespace ServicesApp.Core.Services
 {
-    public class SubCategoryService : ISubCategoryService
+    internal class SubCategoryService : ISubCategoryService
     {
         private readonly IUnitOfWork _unitOfWork;
 

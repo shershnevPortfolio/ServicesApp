@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace ServicesApp.Core.Factories
 {
-    public class CommandHandlerFactory : ICommandHandlerFactory
+    internal class CommandHandlerFactory : ICommandHandlerFactory
     {
         private readonly IServiceProvider _serviceProvider;
 

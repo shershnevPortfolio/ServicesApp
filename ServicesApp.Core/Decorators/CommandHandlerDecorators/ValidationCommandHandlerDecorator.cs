@@ -7,7 +7,7 @@ using Ardalis.Result;
 
 namespace ServicesApp.Core.Decorators.CommandHandlerDecorators
 {
-    public class ValidationCommandHandlerDecorator<TCommand> : ICommandHandler<TCommand>
+    internal class ValidationCommandHandlerDecorator<TCommand> : ICommandHandler<TCommand>
     {
         private readonly ICommandHandler<TCommand> _decorated;
 

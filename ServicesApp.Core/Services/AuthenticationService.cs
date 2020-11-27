@@ -12,7 +12,7 @@ using ServicesApp.Core.Commands;
 
 namespace ServicesApp.Core.Services
 {
-    public class AuthenticationService : IAuthenticationService
+    internal class AuthenticationService : IAuthenticationService
     {
         private readonly UserManager<User> _userManager;
 

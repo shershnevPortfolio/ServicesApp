@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ServicesApp.Core.Interfaces
 {
-    public interface ISubCategoryService
+    internal interface ISubCategoryService
     {
 
         Task CreateSubCategory(SubCategory category);

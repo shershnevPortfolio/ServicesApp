@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ServicesApp.Core.Interfaces
 {
-    public interface IResultCreationService
+    internal interface IResultCreationService
     {
         Result<T> CreateResult<T>(T result);
     }

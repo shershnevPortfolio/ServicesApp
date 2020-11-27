@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ServicesApp.Core.CommandsHandlers
 {
-    public class RegisterCommandHandler : ICommandHandler<RegisterCommand>
+    internal class RegisterCommandHandler : ICommandHandler<RegisterCommand>
     {
         public void Handle(RegisterCommand command)
         {

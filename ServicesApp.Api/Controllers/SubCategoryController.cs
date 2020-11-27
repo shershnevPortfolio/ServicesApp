@@ -17,23 +17,23 @@ namespace ServicesApp.Api.Controllers
     [ApiController]
     public class SubCategoryController : ControllerBase
     {
-        private readonly ISubCategoryService _subCategoryService;
-        public SubCategoryController(ISubCategoryService subCategoryService)
+        private readonly ICommandHandler _commandHandler;
+        public SubCategoryController(ICommandHandler subCategoryService)
         {
-            _subCategoryService = subCategoryService;
+            _commandHandler = commandHandler;
         }
 
         [HttpPost]
         public async Task Post(SubCategory subCategory)
         {
-            await _subCategoryService.CreateSubCategory(subCategory);
+            throw new NotImplementedException();
         }
 
         [HttpGet]
         public Result<IAsyncEnumerable<SubCategory>> Get()
         {
-            return _subCategoryService.GetSubCategoties();   
-           
+            throw new NotImplementedException();
+
         }
 
     }

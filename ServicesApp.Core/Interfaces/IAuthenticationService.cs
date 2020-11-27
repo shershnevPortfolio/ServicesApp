@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ServicesApp.Core.Interfaces
 {
-    public interface IAuthenticationService
+    internal interface IAuthenticationService
     {
         Task<Result<IdentityResult>> RegisterUser(RegisterCommand registerData);
 
