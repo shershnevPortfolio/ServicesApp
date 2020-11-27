@@ -5,57 +5,45 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ServicesApp.Core.Entities;
 using ServicesApp.Core.Interfaces;
+using Ardalis.Result.AspNetCore;
+using Ardalis.Result;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 
 namespace ServicesApp.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [TranslateResultToActionResult]
+
     public class CategoryController : ControllerBase
     {
-        private readonly ICategoryService _categoryService;
+        private readonly ICommandHandler _commandHandler;
 
-        public CategoryController(ICategoryService categoryService)
+        public CategoryController(ICommandHandler commandHandler)
         {
-            _categoryService = categoryService;
+            _commandHandler = commandHandler;
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public Result<IAsyncEnumerable<Category>> Get()
         {
-            var categories = _categoryService.GetCategoties();
-            if (categories == null)
-            {
-                return NotFound(new { message = "not found" });
-            }
-
-            return Ok(categories);
+            throw new NotImplementedException();
+                 
         }
 
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<Result<Category>> Get(int id)
         {
-            var category = await _categoryService.GetCategory(id);
-            if(category == null)
-            {
-                return NotFound(new { message = "not found" });
-            }
-
-            return Ok(category);
+            throw new NotImplementedException();
         }
 
         [HttpGet("{id}/subcategories")]
-        public async Task<IActionResult> GetSubcategories(int id)
+        public async Task<Result<IEnumerable<SubCategory>>> GetSubcategories(int id)
         {
-            var subCategories = await _categoryService.GetSubcategoriesByCategory(id);
-            if (subCategories == null)
-            {
-                return NotFound(new { message = "not found" });
-            }
-
-            return Ok(subCategories);
+            throw new NotImplementedException();
         }
 
 
@@ -63,8 +51,7 @@ namespace ServicesApp.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(Category category)
         {
-            await _categoryService.CreateCategory(category);
-            return Ok(new { data =  category });
+            throw new NotImplementedException();
         }
     }
 }

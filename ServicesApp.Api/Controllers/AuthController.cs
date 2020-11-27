@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using ServicesApp.Core.Entities;
 using AutoMapper;
 using ServicesApp.Core.DTOs;
+using ServicesApp.Core.Interfaces;
+using Ardalis.Result;
+using ServicesApp.Core.Commands;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,46 +19,27 @@ namespace ServicesApp.Api.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private UserManager<User> _userManager;
-        private IMapper _mapper;
+        private readonly ICommandHandler _commandHandler;
 
-        public AuthController(UserManager<User> userManager, IMapper mapper)
+        public AuthController(ICommandHandler commandHandler)
         {
-            _userManager = userManager;
-            _mapper = mapper;
-
+            _commandHandler = commandHandler;
         }
 
         [Route("register")]
         [HttpPost]
-        public async Task<IActionResult> Register([FromQuery] RegisterDTO registerData)
+        public async Task Register(RegisterCommand registerData)
         {
-            var user = _mapper.Map<User>(registerData);
-            var result = await _userManager.CreateAsync(user, registerData.Password);
-            if (result.Succeeded)
-            {
-                return Ok(result);
-            }
-
-            return BadRequest(result.Errors);
+            _commandHandler.Handle<RegisterCommand>(registerData);
         }
 
 
         [Route("login")]
         [HttpPost]
-        public async Task<IActionResult> Login([FromQuery] LoginDTO loginData)
+        public async Task Login(LoginCommand loginData)
         {
-            var user = await _userManager.FindByNameAsync(loginData.UserName);
-            if(user != null && await _userManager.CheckPasswordAsync(user, loginData.Password))
-            {
-                var token = await _userManager.CreateSecurityTokenAsync(user);
-                return Ok(new { token = token, user = _mapper.Map<UserDTO>(user) }); ;
-            }
-            else
-            {
-                return BadRequest(new { message = "inncorrect login data" } );
-            }
-        }
+            _commandHandler.Handle<LoginCommand>(loginData);
 
+        }
     }
 }

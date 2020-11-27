@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Ardalis.Result;
+using Ardalis.Result.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using ServicesApp.Core.Entities;
 using ServicesApp.Core.Interfaces;
@@ -10,33 +12,28 @@ using ServicesApp.Core.Interfaces;
 
 namespace ServicesApp.Api.Controllers
 {
+    [TranslateResultToActionResult]
     [Route("api/[controller]")]
     [ApiController]
     public class SubCategoryController : ControllerBase
     {
-        private readonly ISubCategoryService _subCategoryService;
-        public SubCategoryController(ISubCategoryService subCategoryService)
+        private readonly ICommandHandler _commandHandler;
+        public SubCategoryController(ICommandHandler subCategoryService)
         {
-            _subCategoryService = subCategoryService;
+            _commandHandler = commandHandler;
         }
 
         [HttpPost]
         public async Task Post(SubCategory subCategory)
         {
-
-            await _subCategoryService.CreateSubCategory(subCategory);
+            throw new NotImplementedException();
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public Result<IAsyncEnumerable<SubCategory>> Get()
         {
-            var subCategory = _subCategoryService.GetSubCategoties();
-            if (subCategory == null)
-            {
-                return NotFound(new { message = "not found" });
-            }
+            throw new NotImplementedException();
 
-            return Ok(subCategory);
         }
 
     }

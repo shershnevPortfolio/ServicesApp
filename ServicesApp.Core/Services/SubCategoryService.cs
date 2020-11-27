@@ -2,18 +2,23 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Ardalis.Result;
 using ServicesApp.Core.Entities;
 using ServicesApp.Core.Interfaces;
 
 namespace ServicesApp.Core.Services
 {
-    public class SubCategoryService : ISubCategoryService
+    internal class SubCategoryService : ISubCategoryService
     {
         private readonly IUnitOfWork _unitOfWork;
-        public SubCategoryService(IUnitOfWork unitOfWork)
+
+        private readonly IResultCreationService _resultCreationService;
+
+        public SubCategoryService(IUnitOfWork unitOfWork, IResultCreationService resultCreationService)
         {
             _unitOfWork = unitOfWork;
-        }
+            _resultCreationService = resultCreationService;
+    }
 
         public async Task CreateSubCategory(SubCategory category)
         {
@@ -21,14 +26,16 @@ namespace ServicesApp.Core.Services
             await _unitOfWork.SaveChangesAsync();
         }
 
-        public async Task<SubCategory> GetSubCategory(int id)
+        public async Task<Result<SubCategory>> GetSubCategory(int id)
         {
-            return  await _unitOfWork.SubCategoryRepository.GetById(id);
+            var subcategory = await _unitOfWork.SubCategoryRepository.GetById(id);
+            return _resultCreationService.CreateResult<SubCategory>(subcategory);
         }
 
-        public  IAsyncEnumerable<SubCategory> GetSubCategoties()
+        public  Result<IAsyncEnumerable<SubCategory>> GetSubCategoties()
         {
-            return  _unitOfWork.SubCategoryRepository.GetAll();
+            var subCategories = _unitOfWork.SubCategoryRepository.GetAll();
+            return _resultCreationService.CreateResult<IAsyncEnumerable<SubCategory>>(subCategories);
         }
     }
 }

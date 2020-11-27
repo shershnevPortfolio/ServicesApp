@@ -1,4 +1,5 @@
-﻿using ServicesApp.Core.Entities;
+﻿using Ardalis.Result;
+using ServicesApp.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace ServicesApp.Core.Interfaces
 {
-    public interface ICategoryService
+    internal interface ICategoryService
     {
-        Task<Category> GetCategory(int id);
+        Task<Result<Category>> GetCategory(int id);
 
-        IAsyncEnumerable<Category> GetCategoties();
+        Result<IAsyncEnumerable<Category>> GetCategoties();
 
         Task CreateCategory(Category category);
 
-        Task<IEnumerable<SubCategory>> GetSubcategoriesByCategory(int id);
+        Task<Result<IEnumerable<SubCategory>>> GetSubcategoriesByCategory(int id);
     }
 }
