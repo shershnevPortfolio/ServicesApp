@@ -1,5 +1,6 @@
 ﻿using Ardalis.Result;
 using Microsoft.AspNetCore.Identity;
+using ServicesApp.Core.Commands;
 using ServicesApp.Core.DTOs;
 using ServicesApp.Core.Entities;
 using System;
@@ -11,8 +12,8 @@ namespace ServicesApp.Core.Interfaces
 {
     public interface IAuthenticationService
     {
-        Task<Result<IdentityResult>> RegisterUser(RegisterDTO registerData);
+        Task<Result<IdentityResult>> RegisterUser(RegisterCommand registerData);
 
-        Task<Result<UserDTO>> Login(LoginDTO loginData);
+        Task<Result<UserDTO>> Login(LoginCommand loginData);
     }
 }

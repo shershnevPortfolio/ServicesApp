@@ -12,16 +12,17 @@ namespace ServicesApp.Core.Factories
 {
     public class CommandHandlerFactory : ICommandHandlerFactory
     {
-        public CommandHandlerFactory()
+        private readonly IServiceProvider _serviceProvider;
+
+        public CommandHandlerFactory(IServiceProvider serviceProvider)
         {
-            
+            _serviceProvider = serviceProvider;
         }
 
         public ICommandHandler<TCommand> CreateHandlerFor<TCommand>()
         {
-            var types  = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.GetInterfaces().Contains(typeof(ICommandHandler<TCommand>)));
-            return (ICommandHandler<TCommand>)Activator.CreateInstance(types.First());
 
+            return _serviceProvider.GetService<ICommandHandler<TCommand>>();
         }   
     }
 }

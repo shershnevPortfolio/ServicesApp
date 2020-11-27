@@ -26,21 +26,21 @@ using ServicesApp.Infrastructure.Data;
 using ServicesApp.Infrastructure.Repositories;
 using ServicesApp.Core.Interfaces;
 using ServicesApp.Core.Services;
-using ServicesApp.Core.Proxies;
 using ServicesApp.Core.CommandsHandlers;
+using ServicesApp.Core.Extentions.DependencyInjection;
 
 namespace ServicesApp.Api
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
 
@@ -55,15 +55,11 @@ namespace ServicesApp.Api
             services.AddIdentityCore<User>()
                 .AddEntityFrameworkStores<ApplicationContext>();
 
-            services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-            services.AddTransient<ISubCategoryService, SubCategoryService>();
-            services.AddTransient<IResultCreationService, ResultCreationService>();
-            services.AddTransient<IValidationService, ValidationService>();
-            services.AddScoped<ICommandHandlerFactory, CommandHandlerFactory>();
-            services.AddTransient(typeof(ICommandHandler<>), typeof(CommandHandlerProxy<>));
-    
-       services.Configure<IdentityOptions>(options =>
+            services.AddDomainDependencies();
+            
+
+            services.Configure<IdentityOptions>(options =>
             {
                 // Password settings.
                 options.Password.RequireDigit = true;

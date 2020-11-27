@@ -19,20 +19,18 @@ namespace ServicesApp.Api.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly ICommandHandler<LoginCommand> _loginCommandHandler;
-        private readonly ICommandHandler<RegisterCommand> _registerCommandHandler;
+        private readonly ICommandHandler _commandHandler;
 
-        public AuthController(ICommandHandler<LoginCommand> loginCommandHandler, ICommandHandler<RegisterCommand> registerCommandHandler)
+        public AuthController(ICommandHandler commandHandler)
         {
-            _loginCommandHandler = loginCommandHandler;
-            _registerCommandHandler = registerCommandHandler;
+            _commandHandler = commandHandler;
         }
 
         [Route("register")]
         [HttpPost]
         public async Task Register(RegisterCommand registerData)
         {
-            _registerCommandHandler.Handle(registerData);
+            _commandHandler.Handle<RegisterCommand>(registerData);
         }
 
 
@@ -40,7 +38,7 @@ namespace ServicesApp.Api.Controllers
         [HttpPost]
         public async Task Login(LoginCommand loginData)
         {
-            _loginCommandHandler.Handle(loginData);
+            _commandHandler.Handle<LoginCommand>(loginData);
 
         }
     }

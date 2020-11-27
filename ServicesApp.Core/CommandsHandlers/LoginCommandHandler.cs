@@ -8,9 +8,18 @@ namespace ServicesApp.Core.CommandsHandlers
 {
     public class LoginCommandHandler : ICommandHandler<LoginCommand>
     {
+        private readonly IAuthenticationService _authenticationService;
+
+        public LoginCommandHandler(IAuthenticationService authenticationService)
+        {
+            _authenticationService = authenticationService;
+        }
+
         public void Handle(LoginCommand command)
         {
             throw new NotImplementedException();
         }
+
+       
     }
-}
+} 
