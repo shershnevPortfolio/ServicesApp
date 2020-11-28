@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace ServicesApp.Core.CommandsHandlers
 {
-    internal class RegisterCommandHandler : ICommandHandler<RegisterCommand>
+    internal class GetCategoryCommandHandler : CrudCommandHandler<GetCategoryCommand>
     {
-        public async Task Handle(RegisterCommand command)
+        public GetCategoryCommandHandler(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            throw new NotImplementedException();
         }
     }
 }

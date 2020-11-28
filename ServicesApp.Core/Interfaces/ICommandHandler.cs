@@ -1,17 +1,19 @@
-﻿using System;
+﻿using ServicesApp.Core.Commands;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ServicesApp.Core.Interfaces
 {
-    internal interface ICommandHandler<TCommand> 
+    internal interface ICommandHandler<TCommand> where TCommand : BaseCommand
     {
-        void Handle(TCommand command);
+        Task Handle(TCommand command);
 
     }
 
     public interface ICommandHandler
     {
-        void Handle<TCommand>(TCommand command);
+        Task Handle<TCommand>(TCommand command) where TCommand : BaseCommand ;
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using ServicesApp.Core.Commands;
 using ServicesApp.Core.Entities;
 using ServicesApp.Core.Interfaces;
 using ServicesApp.Infrastructure.Data;
@@ -33,6 +34,11 @@ namespace ServicesApp.Infrastructure.Repositories
         public Task SaveChangesAsync()
         {
             return _context.SaveChangesAsync();
+        }
+
+        public Task ExecuteCrudCommand(CrudCommand command) 
+        {
+            throw new NotImplementedException();    
         }
 
         public void Dispose()

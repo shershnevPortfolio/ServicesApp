@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using ServicesApp.Core.Commands;
 using ServicesApp.Core.Interfaces;
 
@@ -15,7 +16,7 @@ namespace ServicesApp.Core.CommandsHandlers
             _authenticationService = authenticationService;
         }
 
-        public void Handle(LoginCommand command)
+        public async Task Handle(LoginCommand command)
         {
             throw new NotImplementedException();
         }

@@ -3,25 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 using ServicesApp.Core.Interfaces;
-
+using Microsoft.Extensions.DependencyInjection;
+using ServicesApp.Core.Commands;
 
 namespace ServicesApp.Core.CommandsHandlers
 {
     public class CommandHandlerFacade: ICommandHandler
     {
+        private readonly IServiceProvider _serviceProvider;
+
         private readonly ICommandHandlerFactory _commandHandlerFactory;
 
-        public CommandHandlerFacade(ICommandHandlerFactory commandHandlerFactory)
+        public CommandHandlerFacade(IServiceProvider serviceProvider)
         {
-            _commandHandlerFactory = commandHandlerFactory;
+            _serviceProvider = serviceProvider;
+            _commandHandlerFactory = _serviceProvider.GetService<ICommandHandlerFactory>();
         }
 
-        public void Handle<TCommand>(TCommand command)
+
+        public async Task Handle<TCommand> (TCommand command) where TCommand : BaseCommand
         {
             var handler = _commandHandlerFactory.CreateHandlerFor<TCommand>();
-            handler.Handle(command);
-
+            await handler.Handle(command);
         }
     }
 }

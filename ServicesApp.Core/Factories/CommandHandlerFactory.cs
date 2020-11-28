@@ -19,9 +19,8 @@ namespace ServicesApp.Core.Factories
             _serviceProvider = serviceProvider;
         }
 
-        public ICommandHandler<TCommand> CreateHandlerFor<TCommand>()
+        public ICommandHandler<TCommand> CreateHandlerFor<TCommand>() where TCommand : BaseCommand
         {
-
             return _serviceProvider.GetService<ICommandHandler<TCommand>>();
         }   
     }

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ServicesApp.Core.CommandsHandlers
 {
-    internal class RegisterCommandHandler : ICommandHandler<RegisterCommand>
+    class GetSubcategoriesCommandHandler : ICommandHandler<GetSubcategoriesCommand>
     {
-        public async Task Handle(RegisterCommand command)
+        public async Task Handle(GetSubcategoriesCommand command)
         {
             throw new NotImplementedException();
         }

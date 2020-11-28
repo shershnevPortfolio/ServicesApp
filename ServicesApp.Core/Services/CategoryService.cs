@@ -34,8 +34,7 @@ namespace ServicesApp.Core.Services
 
         public async Task CreateCategory(Category category)
         {
-            await _unitOfWork.CategoryRepository.Add(category);
-            await _unitOfWork.SaveChangesAsync();
+           
         }
         
         public async Task<Result<IEnumerable<SubCategory>>> GetSubcategoriesByCategory(int id)

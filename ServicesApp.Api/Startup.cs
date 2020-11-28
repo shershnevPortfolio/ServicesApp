@@ -51,7 +51,7 @@ namespace ServicesApp.Api
             });
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
+            services.AddCors();
             services.AddIdentityCore<User>()
                 .AddEntityFrameworkStores<ApplicationContext>();
 
@@ -103,6 +103,7 @@ namespace ServicesApp.Api
             {
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
+
 
         }
 

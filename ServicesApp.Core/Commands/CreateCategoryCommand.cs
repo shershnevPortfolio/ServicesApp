@@ -6,11 +6,8 @@ using System.Text;
 
 namespace ServicesApp.Core.Commands
 {
-    public class RegisterCommand : BaseCommand
+    public class CreateCategoryCommand : BaseCommand
     {
-        public string Password { get; set; }
-
-        public string UserName { get; set; }
-
+        public int Id { get; set; }
     }
 }

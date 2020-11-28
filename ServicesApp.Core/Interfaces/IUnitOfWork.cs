@@ -1,4 +1,5 @@
-﻿using ServicesApp.Core.Entities;
+﻿using ServicesApp.Core.Commands;
+using ServicesApp.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,6 +12,8 @@ namespace ServicesApp.Core.Interfaces
         ICategoryRepository CategoryRepository { get; }
 
         IRepository<SubCategory> SubCategoryRepository { get; }
+
+        Task ExecuteCrudCommand(CrudCommand command);
 
         void SaveChanges();
 
