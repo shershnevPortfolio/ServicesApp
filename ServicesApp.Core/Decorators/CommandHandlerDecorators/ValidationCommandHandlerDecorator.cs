@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ServicesApp.Core.Interfaces;
 using ServicesApp.Core.Commands;
 using Ardalis.Result;
 using System.Threading.Tasks;
+using ServicesApp.Core.Abstractions.Interfaces;
+using ServicesApp.Core.Abstractions.Commands;
 
 namespace ServicesApp.Core.Decorators.CommandHandlerDecorators
 {

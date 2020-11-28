@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServicesApp.Core.Interfaces
+namespace ServicesApp.Core.Abstractions.Interfaces
 {
     internal interface ICategoryService
     {

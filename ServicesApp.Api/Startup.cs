@@ -3,7 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Reflection; 
+using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,10 +24,10 @@ using ServicesApp.Core.Entities;
 using ServicesApp.Core;
 using ServicesApp.Infrastructure.Data;
 using ServicesApp.Infrastructure.Repositories;
-using ServicesApp.Core.Interfaces;
 using ServicesApp.Core.Services;
 using ServicesApp.Core.CommandsHandlers;
 using ServicesApp.Core.Extentions.DependencyInjection;
+using ServicesApp.Core.Abstractions.Interfaces;
 
 namespace ServicesApp.Api
 {

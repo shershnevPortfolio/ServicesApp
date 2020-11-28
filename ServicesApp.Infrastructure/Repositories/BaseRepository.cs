@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
-using ServicesApp.Core.Interfaces;
 using ServicesApp.Core.Entities;
 using ServicesApp.Infrastructure.Data;
 using System.Threading.Tasks;
+using ServicesApp.Core.Abstractions.Interfaces;
 
 namespace ServicesApp.Infrastructure.Repositories
 {

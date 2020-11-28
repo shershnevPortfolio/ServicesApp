@@ -1,4 +1,5 @@
-﻿using ServicesApp.Core.Interfaces;
+﻿using ServicesApp.Core.Abstractions.Commands;
+using ServicesApp.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,8 +7,7 @@ using System.Text;
 
 namespace ServicesApp.Core.Commands
 {
-    public class CreateCategoryCommand : BaseCommand
+    public class CreateCategoryCommand : CrudCommand
     {
-        public int Id { get; set; }
     }
 }

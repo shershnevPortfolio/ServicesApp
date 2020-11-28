@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ServicesApp.Core.Abstractions.Interfaces;
 using ServicesApp.Core.Entities;
-using ServicesApp.Core.Interfaces;
 using ServicesApp.Infrastructure.Data;
 using System;
 using System.Collections.Generic;

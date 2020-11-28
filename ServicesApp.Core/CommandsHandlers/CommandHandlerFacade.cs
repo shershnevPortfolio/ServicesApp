@@ -4,9 +4,10 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using ServicesApp.Core.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using ServicesApp.Core.Commands;
+using ServicesApp.Core.Abstractions.Interfaces;
+using ServicesApp.Core.Abstractions.Commands;
 
 namespace ServicesApp.Core.CommandsHandlers
 {

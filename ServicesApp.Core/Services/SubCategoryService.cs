@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Ardalis.Result;
+using ServicesApp.Core.Abstractions.Interfaces;
 using ServicesApp.Core.Entities;
 using ServicesApp.Core.Interfaces;
 

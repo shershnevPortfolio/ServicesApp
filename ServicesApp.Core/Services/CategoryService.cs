@@ -1,10 +1,10 @@
 ﻿using ServicesApp.Core.Entities;
-using ServicesApp.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Ardalis.Result;
 using System.Threading.Tasks;
+using ServicesApp.Core.Abstractions.Interfaces;
 
 namespace ServicesApp.Core.Services
 {

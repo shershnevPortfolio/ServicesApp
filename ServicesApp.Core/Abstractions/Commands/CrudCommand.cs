@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ServicesApp.Core.Commands
+namespace ServicesApp.Core.Abstractions.Commands
 {
     public abstract class CrudCommand : BaseCommand
     {

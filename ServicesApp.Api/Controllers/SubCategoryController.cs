@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 using Ardalis.Result;
 using Ardalis.Result.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
+using ServicesApp.Core.Abstractions.Interfaces;
 using ServicesApp.Core.Entities;
-using ServicesApp.Core.Interfaces;
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using ServicesApp.Core.Factories;
+using ServicesApp.Core.Abstractions.Interfaces;
 
 namespace ServicesApp.Core.Extentions.DependencyInjection
 {

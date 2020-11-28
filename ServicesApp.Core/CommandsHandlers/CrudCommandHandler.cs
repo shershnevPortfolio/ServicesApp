@@ -1,26 +1,16 @@
-﻿using ServicesApp.Core.Commands;
-using ServicesApp.Core.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
+using ServicesApp.Core.Abstractions.CommandHandlers;
+using ServicesApp.Core.Abstractions.Commands;
+using ServicesApp.Core.Abstractions.Interfaces;
 
 namespace ServicesApp.Core.CommandsHandlers
 {
-   internal abstract class CrudCommandHandler<TCommand> : ICommandHandler<TCommand> where TCommand : CrudCommand
-   {
-        protected readonly IUnitOfWork _unitOfWork;
-
-        protected CrudCommandHandler(IUnitOfWork unitOfWork)
+    class CrudCommandHandler<TCommand> : BaseCrudCommandHandler<TCommand> where TCommand : CrudCommand
+    {
+        public CrudCommandHandler(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            _unitOfWork = unitOfWork;
-        }
-
-        public virtual async Task Handle(TCommand command)
-        {
-            var commandForDal = (CrudCommand)command;
-            await _unitOfWork.ExecuteCrudCommand(commandForDal);
-            await _unitOfWork.SaveChangesAsync();
         }
     }
 }
