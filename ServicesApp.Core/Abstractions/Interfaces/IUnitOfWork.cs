@@ -9,10 +9,6 @@ namespace ServicesApp.Core.Abstractions.Interfaces
 {
     public interface IUnitOfWork
     {
-        ICategoryRepository CategoryRepository { get; }
-
-        IRepository<Subcategory> SubCategoryRepository { get; }
-
         void SaveChanges();
 
         Task SaveChangesAsync();

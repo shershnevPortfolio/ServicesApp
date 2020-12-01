@@ -2,7 +2,6 @@
 using ServicesApp.Core.Commands;
 using ServicesApp.Core.CommandsHandlers;
 using ServicesApp.Core.Services;
-using ServicesApp.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +28,6 @@ namespace ServicesApp.Core.Extentions.DependencyInjection
             });
 
             services.AddTransient<ICommandHandler, CommandHandlerFacade>();
-            services.AddTransient<ISubCategoryService, SubCategoryService>();
             services.AddTransient<IResultCreationService, ResultCreationService>();
             services.AddTransient<IValidationService, ValidationService>();
             services.AddScoped<ICommandHandlerFactory, CommandHandlerFactory>();

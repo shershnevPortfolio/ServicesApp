@@ -9,15 +9,15 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServicesApp.Infrastructure.Visiters
+namespace ServicesApp.Infrastructure.Visitors
 {
-    class CommandQueryVisiter : ICommandVisitor
+    class CommandQueryVisitor : ICommandVisitor
     {
         private readonly IUnitOfWork _unitOfWork;
 
         private readonly IMapper _mapper;
 
-        public CommandQueryVisiter(IUnitOfWork unitOfWork, IMapper mapper)
+        public CommandQueryVisitor(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;

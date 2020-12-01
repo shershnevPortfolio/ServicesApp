@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using ServicesApp.Core.Entities;
 using AutoMapper;
 using ServicesApp.Core.DTOs;
-using ServicesApp.Core.Interfaces;
 using Ardalis.Result;
 using ServicesApp.Core.Commands;
 using ServicesApp.Core.Abstractions.Interfaces;

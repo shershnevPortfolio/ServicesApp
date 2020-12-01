@@ -45,6 +45,7 @@ namespace ServicesApp.Api
         public void ConfigureServices(IServiceCollection services)
         {
 
+
             services.AddDbContext<ApplicationContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
@@ -56,7 +57,6 @@ namespace ServicesApp.Api
             services.AddIdentityCore<User>()
                 .AddEntityFrameworkStores<ApplicationContext>();
 
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddDomainDependencies();
             services.AddInfrastructureDependencies();
             

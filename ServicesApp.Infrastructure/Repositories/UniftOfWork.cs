@@ -6,6 +6,8 @@ using ServicesApp.Core.Abstractions.Commands;
 using ServicesApp.Core.Abstractions.Interfaces;
 using ServicesApp.Core.Entities;
 using ServicesApp.Infrastructure.Data;
+using Microsoft.Extensions.DependencyInjection;
+using ServicesApp.Infrastructure.Abstractions.Interfaces;
 
 namespace ServicesApp.Infrastructure.Repositories
 {
@@ -14,17 +16,12 @@ namespace ServicesApp.Infrastructure.Repositories
         
         private readonly ApplicationContext _context;
 
-        private readonly ICategoryRepository _categoryRepository;
+        private readonly IRepositoryFactory<ApplicationContext> _repositoryFactory;
 
-        private readonly IRepository<Subcategory> _subCategoryRepository;
-
-        public ICategoryRepository CategoryRepository => _categoryRepository ?? new CategoryRepository(_context);
-
-        public IRepository<Subcategory> SubCategoryRepository => _subCategoryRepository ?? new BaseRepository<Subcategory>(_context);
-
-        public UnitOfWork(ApplicationContext conext)
+        public UnitOfWork(ApplicationContext context, IServiceProvider serviseProvider)
         {
-            _context = conext;
+            _context = context;
+            _repositoryFactory = serviseProvider.GetService<IRepositoryFactory<ApplicationContext>>();
         }
 
         public void SaveChanges()
@@ -47,7 +44,7 @@ namespace ServicesApp.Infrastructure.Repositories
 
         public IRepository<TEntity> GetRepository<TEntity>() where TEntity : BaseEntity
         {
-            return new BaseRepository<TEntity>(_context);
+            return _repositoryFactory.CreateRepositoryFor<TEntity>(_context);
         }
     }
 }
