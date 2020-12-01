@@ -25,9 +25,8 @@ namespace ServicesApp.Infrastructure.Visiters
 
         public async Task Visit<TEntity>(GetCommand<TEntity> command) where TEntity : BaseEntity
         {
-            var repo = _unitOfWork.CategoryRepository;
-            var result = await repo.GetById(command.Id);
-            command.Result = Result<object>.Success(result);
+            var repository = GetRepository<TEntity>();
+            command.Result = Result<object>.Success(await repository.GetById(command.Id));
         }
 
         public async Task Visit<TEntity>(GetEnumerableCommand<TEntity> command) where TEntity : BaseEntity
@@ -39,7 +38,8 @@ namespace ServicesApp.Infrastructure.Visiters
         public async Task Visit<TEntity>(CreateCommand<TEntity> command) where TEntity : BaseEntity
         {
             var repo = GetRepository<TEntity>();
-            command.Result = Result<object>.Success(repo.Add(_mapper.Map<TEntity>(command)));
+            await repo.Add(_mapper.Map<TEntity>(command));
+            command.Result = Result<object>.Success(true);
         }
 
         private IRepository<TEntity> GetRepository<TEntity>() where TEntity : BaseEntity
