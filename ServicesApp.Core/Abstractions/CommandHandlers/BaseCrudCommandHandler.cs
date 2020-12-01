@@ -11,9 +11,9 @@ namespace ServicesApp.Core.Abstractions.CommandHandlers
     {
         protected readonly IUnitOfWork _unitOfWork;
 
-        protected readonly ICommandVisiter _visiter;
+        protected readonly ICommandVisitor _visiter;
 
-        protected BaseCrudCommandHandler(IUnitOfWork unitOfWork, ICommandVisiter visiter)
+        protected BaseCrudCommandHandler(IUnitOfWork unitOfWork, ICommandVisitor visiter)
         {
             _unitOfWork = unitOfWork;
             _visiter = visiter;

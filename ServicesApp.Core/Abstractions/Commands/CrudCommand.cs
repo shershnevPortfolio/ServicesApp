@@ -9,7 +9,7 @@ namespace ServicesApp.Core.Abstractions.Commands
 {
     public abstract class CrudCommand : BaseCommand
     {
-        public abstract Task Accept(ICommandVisiter visiter);
+        public abstract Task Accept(ICommandVisitor visiter);
 
     }
 }

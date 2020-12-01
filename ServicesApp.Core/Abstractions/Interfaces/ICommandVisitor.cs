@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ServicesApp.Core.Abstractions.Interfaces
 {
-    public interface ICommandVisiter
+    public interface ICommandVisitor
     { 
         Task Visit<TEntity>(GetCommand<TEntity> command) where TEntity : BaseEntity;
 
