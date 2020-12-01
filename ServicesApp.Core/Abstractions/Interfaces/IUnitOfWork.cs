@@ -11,12 +11,12 @@ namespace ServicesApp.Core.Abstractions.Interfaces
     {
         ICategoryRepository CategoryRepository { get; }
 
-        IRepository<SubCategory> SubCategoryRepository { get; }
-
-        Task ExecuteCrudCommand(CrudCommand command);
+        IRepository<Subcategory> SubCategoryRepository { get; }
 
         void SaveChanges();
 
         Task SaveChangesAsync();
+
+        IRepository<TEntity> GetRepository<TEntity>() where TEntity : BaseEntity;
     }
 }

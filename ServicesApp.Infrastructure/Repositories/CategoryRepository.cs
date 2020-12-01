@@ -15,7 +15,7 @@ namespace ServicesApp.Infrastructure.Repositories
         {
         }
 
-        public async Task<IEnumerable<SubCategory>> GetSubcategories(int id)
+        public async Task<IEnumerable<Subcategory>> GetSubcategories(int id)
         {
             var category = await GetById(id);  
             return category.SubCategories;

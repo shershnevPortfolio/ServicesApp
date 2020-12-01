@@ -11,16 +11,17 @@ namespace ServicesApp.Core.Abstractions.CommandHandlers
     {
         protected readonly IUnitOfWork _unitOfWork;
 
-        protected BaseCrudCommandHandler(IUnitOfWork unitOfWork)
+        protected readonly ICommandVisiter _visiter;
+
+        protected BaseCrudCommandHandler(IUnitOfWork unitOfWork, ICommandVisiter visiter)
         {
             _unitOfWork = unitOfWork;
+            _visiter = visiter;
         }
 
         public virtual async Task Handle(TCommand command)
         {
-            var commandForDal = command;
-            await _unitOfWork.ExecuteCrudCommand(commandForDal);
-            await _unitOfWork.SaveChangesAsync();
+            await command.Accept(_visiter);
         }
     }
 }

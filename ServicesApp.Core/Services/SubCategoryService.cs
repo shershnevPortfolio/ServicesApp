@@ -21,22 +21,22 @@ namespace ServicesApp.Core.Services
             _resultCreationService = resultCreationService;
     }
 
-        public async Task CreateSubCategory(SubCategory category)
+        public async Task CreateSubCategory(Subcategory category)
         {
             await _unitOfWork.SubCategoryRepository.Add(category);
             await _unitOfWork.SaveChangesAsync();
         }
 
-        public async Task<Result<SubCategory>> GetSubCategory(int id)
+        public async Task<Result<Subcategory>> GetSubCategory(int id)
         {
             var subcategory = await _unitOfWork.SubCategoryRepository.GetById(id);
-            return _resultCreationService.CreateResult<SubCategory>(subcategory);
+            return _resultCreationService.CreateResult<Subcategory>(subcategory);
         }
 
-        public  Result<IAsyncEnumerable<SubCategory>> GetSubCategoties()
+        public  Result<IAsyncEnumerable<Subcategory>> GetSubCategoties()
         {
             var subCategories = _unitOfWork.SubCategoryRepository.GetAll();
-            return _resultCreationService.CreateResult<IAsyncEnumerable<SubCategory>>(subCategories);
+            return _resultCreationService.CreateResult<IAsyncEnumerable<Subcategory>>(subCategories);
         }
     }
 }

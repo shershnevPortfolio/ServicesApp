@@ -27,6 +27,7 @@ using ServicesApp.Infrastructure.Repositories;
 using ServicesApp.Core.Services;
 using ServicesApp.Core.CommandsHandlers;
 using ServicesApp.Core.Extentions.DependencyInjection;
+using ServicesApp.Infrastructure.Extentions.DependencyInjection;
 using ServicesApp.Core.Abstractions.Interfaces;
 
 namespace ServicesApp.Api
@@ -57,6 +58,7 @@ namespace ServicesApp.Api
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddDomainDependencies();
+            services.AddInfrastructureDependencies();
             
 
             services.Configure<IdentityOptions>(options =>

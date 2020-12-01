@@ -9,7 +9,7 @@ namespace ServicesApp.Core.CommandsHandlers
 {
     class CrudCommandHandler<TCommand> : BaseCrudCommandHandler<TCommand> where TCommand : CrudCommand
     {
-        public CrudCommandHandler(IUnitOfWork unitOfWork) : base(unitOfWork)
+        public CrudCommandHandler(IUnitOfWork unitOfWork, ICommandVisiter visiter) : base(unitOfWork, visiter)
         {
         }
     }

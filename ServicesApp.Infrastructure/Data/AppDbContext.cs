@@ -16,7 +16,7 @@ namespace ServicesApp.Infrastructure.Data
             }
 
             public virtual DbSet<Category> Categories { get; set; }
-            public virtual DbSet<SubCategory> SubCategories { get; set; }
+            public virtual DbSet<Subcategory> SubCategories { get; set; }
     }
 
 

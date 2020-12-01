@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ServicesApp.Core.Entities
 {
-    public class SubCategory : BaseEntity
+    public class Subcategory : BaseEntity
     {
         [Required]
         public string Name { get; set; }

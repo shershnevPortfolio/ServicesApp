@@ -11,15 +11,16 @@ namespace ServicesApp.Infrastructure.Repositories
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
+        
         private readonly ApplicationContext _context;
 
         private readonly ICategoryRepository _categoryRepository;
 
-        private readonly IRepository<SubCategory> _subCategoryRepository;
+        private readonly IRepository<Subcategory> _subCategoryRepository;
 
         public ICategoryRepository CategoryRepository => _categoryRepository ?? new CategoryRepository(_context);
 
-        public IRepository<SubCategory> SubCategoryRepository => _subCategoryRepository ?? new BaseRepository<SubCategory>(_context);
+        public IRepository<Subcategory> SubCategoryRepository => _subCategoryRepository ?? new BaseRepository<Subcategory>(_context);
 
         public UnitOfWork(ApplicationContext conext)
         {
@@ -36,17 +37,17 @@ namespace ServicesApp.Infrastructure.Repositories
             return _context.SaveChangesAsync();
         }
 
-        public Task ExecuteCrudCommand(CrudCommand command) 
-        {
-            throw new NotImplementedException();    
-        }
-
         public void Dispose()
         {
             if(_context != null)
             {
                 _context.Dispose();
             }
+        }
+
+        public IRepository<TEntity> GetRepository<TEntity>() where TEntity : BaseEntity
+        {
+            return new BaseRepository<TEntity>(_context);
         }
     }
 }

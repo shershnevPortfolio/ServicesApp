@@ -10,10 +10,10 @@ namespace ServicesApp.Core.Interfaces
     internal interface ISubCategoryService
     {
 
-        Task CreateSubCategory(SubCategory category);
+        Task CreateSubCategory(Subcategory category);
 
-        Result<IAsyncEnumerable<SubCategory>> GetSubCategoties();
+        Result<IAsyncEnumerable<Subcategory>> GetSubCategoties();
 
-        Task<Result<SubCategory>> GetSubCategory(int id);
+        Task<Result<Subcategory>> GetSubCategory(int id);
     }
 }

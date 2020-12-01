@@ -6,6 +6,7 @@ using Ardalis.Result;
 using Ardalis.Result.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using ServicesApp.Core.Abstractions.Interfaces;
+using ServicesApp.Core.Commands;
 using ServicesApp.Core.Entities;
 
 
@@ -25,15 +26,17 @@ namespace ServicesApp.Api.Controllers
         }
 
         [HttpPost]
-        public async Task Post(SubCategory subCategory)
+        public async Task<Result<object>> Post(CreateSubcategoryCommand command)
         {
-            throw new NotImplementedException();
+            await _commandHandler.Handle<CreateSubcategoryCommand>(command);
+            return command.Result;
         }
 
         [HttpGet]
-        public Result<IAsyncEnumerable<SubCategory>> Get()
+        public async Task<Result<object>> Get(GetSubcategoriesCommand command)
         {
-            throw new NotImplementedException();
+            await _commandHandler.Handle<GetSubcategoriesCommand>(command);
+            return command.Result;
 
         }
 

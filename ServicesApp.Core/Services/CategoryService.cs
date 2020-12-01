@@ -37,10 +37,10 @@ namespace ServicesApp.Core.Services
            
         }
         
-        public async Task<Result<IEnumerable<SubCategory>>> GetSubcategoriesByCategory(int id)
+        public async Task<Result<IEnumerable<Subcategory>>> GetSubcategoriesByCategory(int id)
         {
             var subCategories = await _unitOfWork.CategoryRepository.GetSubcategories(id);
-            return _resultCreationService.CreateResult<IEnumerable<SubCategory>>(subCategories);
+            return _resultCreationService.CreateResult<IEnumerable<Subcategory>>(subCategories);
         }
     }
 }

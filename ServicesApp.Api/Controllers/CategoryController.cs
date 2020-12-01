@@ -28,22 +28,23 @@ namespace ServicesApp.Api.Controllers
         }
 
         [HttpGet]
-        public async Task Get(GetCategoryCommand command)
+        public async Task<Result<object>> Get(GetCategoriesCommand command)
         {
-            await _commandHandler.Handle<GetCategoryCommand>(command);
+            await _commandHandler.Handle<GetCategoriesCommand>(command);
+            return command.Result;
 
         }
 
 
         [HttpGet("{id}")]
-        public async Task Get(int id)
+        public async Task<Result<object>> Get([FromRoute] GetCategoryCommand command)
         {
-            var command = new GetCategoryCommand() { Id = id};
             await _commandHandler.Handle<GetCategoryCommand>(command);
+            return command.Result;
         }
 
         [HttpGet("{id}/subcategories")]
-        public async Task<Result<IEnumerable<SubCategory>>> GetSubcategories(int id)
+        public async Task<Result<IEnumerable<Subcategory>>> GetSubcategories(int id)
         {
             throw new NotImplementedException();
         }

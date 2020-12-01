@@ -13,7 +13,7 @@ using ServicesApp.Core.Abstractions.Interfaces;
 
 namespace ServicesApp.Core.Extentions.DependencyInjection
 {
-    public static class DiExtentions
+    public static class DependencyInjectionExtentions
     {
         public static IServiceCollection AddDomainDependencies(this IServiceCollection services)
         {

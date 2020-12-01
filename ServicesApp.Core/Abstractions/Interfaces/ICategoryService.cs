@@ -15,6 +15,6 @@ namespace ServicesApp.Core.Abstractions.Interfaces
 
         Task CreateCategory(Category category);
 
-        Task<Result<IEnumerable<SubCategory>>> GetSubcategoriesByCategory(int id);
+        Task<Result<IEnumerable<Subcategory>>> GetSubcategoriesByCategory(int id);
     }
 }

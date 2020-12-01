@@ -7,6 +7,7 @@ namespace ServicesApp.Core.Abstractions.Commands
 {
     public abstract class BaseCommand
     {
-        public Result<object> Result  { get; set;  }
+        public Result<object> Result  { get; set; }
+
     }
 }

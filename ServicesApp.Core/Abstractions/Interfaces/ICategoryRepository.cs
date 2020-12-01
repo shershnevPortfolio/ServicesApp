@@ -8,6 +8,6 @@ namespace ServicesApp.Core.Abstractions.Interfaces
 {
     public interface ICategoryRepository : IRepository<Category>
     {
-        Task<IEnumerable<SubCategory>> GetSubcategories(int id);
+        Task<IEnumerable<Subcategory>> GetSubcategories(int id);
     }
 }

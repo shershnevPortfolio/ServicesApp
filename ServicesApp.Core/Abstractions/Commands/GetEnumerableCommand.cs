@@ -7,9 +7,12 @@ using System.Threading.Tasks;
 
 namespace ServicesApp.Core.Abstractions.Commands
 {
-    public abstract class CrudCommand : BaseCommand
+    public class GetEnumerableCommand<TEntity> : CrudCommand where TEntity : BaseEntity
     {
-        public abstract Task Accept(ICommandVisiter visiter);
+        public override async Task Accept(ICommandVisiter visiter)
+        {
+            await visiter.Visit<TEntity>(this);
+        }
 
     }
 }
