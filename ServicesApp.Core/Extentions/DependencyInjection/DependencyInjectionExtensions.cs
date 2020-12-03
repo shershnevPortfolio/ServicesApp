@@ -31,8 +31,6 @@ namespace ServicesApp.Core.Extentions.DependencyInjection
             services.AddTransient<IResultCreationService, ResultCreationService>();
             services.AddTransient<IValidationService, ValidationService>();
             services.AddScoped<ICommandHandlerFactory, CommandHandlerFactory>();
-            services.AddTransient<IAuthenticationService, AuthenticationService>();
-
             return services;
          
         }

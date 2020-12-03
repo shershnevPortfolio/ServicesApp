@@ -7,7 +7,7 @@ namespace ServicesApp.Core.Entities
 {
     public class Category : BaseEntity
     {
-       public string  Name { get; set;} 
+       public string  Name { get; set; } 
 
        public virtual List<Subcategory> SubCategories { get; set; }
     }

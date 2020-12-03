@@ -29,6 +29,7 @@ using ServicesApp.Core.CommandsHandlers;
 using ServicesApp.Core.Extentions.DependencyInjection;
 using ServicesApp.Infrastructure.Extentions.DependencyInjection;
 using ServicesApp.Core.Abstractions.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ServicesApp.Api
 {
@@ -54,6 +55,7 @@ namespace ServicesApp.Api
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddCors();
+
             services.AddIdentityCore<User>()
                 .AddEntityFrameworkStores<ApplicationContext>();
 
@@ -99,8 +101,10 @@ namespace ServicesApp.Api
                     IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
                     ValidateIssuerSigningKey = true,
                 };
-            });
+            })
+            ;
 
+            
             services.AddControllers().AddNewtonsoftJson(options => 
             {
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
