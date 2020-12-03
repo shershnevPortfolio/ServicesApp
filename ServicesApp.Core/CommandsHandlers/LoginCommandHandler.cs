@@ -5,10 +5,12 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Ardalis.Result;
+using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using ServicesApp.Core.Abstractions.Interfaces;
 using ServicesApp.Core.Commands;
+using ServicesApp.Core.DTOs;
 using ServicesApp.Core.Entities;
 using ServicesApp.Core.Options;
 
@@ -23,11 +25,14 @@ namespace ServicesApp.Core.CommandsHandlers
 
         private readonly IValidationService _validationService;
 
-        public LoginCommandHandler(UserManager<User> userManager, IResultCreationService resultCreationService, IValidationService validationService)
+        private readonly IMapper _mapper;
+
+        public LoginCommandHandler(UserManager<User> userManager, IResultCreationService resultCreationService, IValidationService validationService, IMapper mapper)
         {
             _userManager = userManager;
             _resultCreationService = resultCreationService;
             _validationService = validationService;
+            _mapper = mapper;
         }
 
 
@@ -39,7 +44,7 @@ namespace ServicesApp.Core.CommandsHandlers
             {
                 var userId = user.Id;
                 var token = await _userManager.CreateSecurityTokenAsync(user);
-                command.Result = Result<object>.Success(new { user, token });
+                command.Result = Result<object>.Success(new { user = _mapper.Map<UserDTO>(user), token });
                
             }
         }
