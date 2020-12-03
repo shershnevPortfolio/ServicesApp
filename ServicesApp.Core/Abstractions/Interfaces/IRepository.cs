@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ServicesApp.Core.Entities;
 
-namespace ServicesApp.Core.Interfaces
+namespace ServicesApp.Core.Abstractions.Interfaces
 {
     public interface IRepository<T> where T : BaseEntity
     {

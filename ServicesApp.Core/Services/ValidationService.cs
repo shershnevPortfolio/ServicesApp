@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ServicesApp.Core.Interfaces;
+using ServicesApp.Core.Abstractions.Interfaces;
 
 namespace ServicesApp.Core.Services
 {

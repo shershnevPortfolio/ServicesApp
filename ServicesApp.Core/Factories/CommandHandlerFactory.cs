@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ServicesApp.Core.Commands;
-using ServicesApp.Core.CommandsHandlers;
-using ServicesApp.Core.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using System.Linq;
+using ServicesApp.Core.Abstractions.Interfaces;
+using ServicesApp.Core.Abstractions.Commands;
 
 namespace ServicesApp.Core.Factories
 {
@@ -19,9 +18,8 @@ namespace ServicesApp.Core.Factories
             _serviceProvider = serviceProvider;
         }
 
-        public ICommandHandler<TCommand> CreateHandlerFor<TCommand>()
+        public ICommandHandler<TCommand> CreateHandlerFor<TCommand>() where TCommand : BaseCommand
         {
-
             return _serviceProvider.GetService<ICommandHandler<TCommand>>();
         }   
     }

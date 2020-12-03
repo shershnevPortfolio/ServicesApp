@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ServicesApp.Core.Interfaces;
 using ServicesApp.Core.Commands;
 using Ardalis.Result;
+using System.Threading.Tasks;
+using ServicesApp.Core.Abstractions.Interfaces;
+using ServicesApp.Core.Abstractions.Commands;
 
 namespace ServicesApp.Core.Decorators.CommandHandlerDecorators
 {
-    internal class ValidationCommandHandlerDecorator<TCommand> : ICommandHandler<TCommand>
+    internal class ValidationCommandHandlerDecorator<TCommand> : ICommandHandler<TCommand> where TCommand : BaseCommand
     {
         private readonly ICommandHandler<TCommand> _decorated;
 
@@ -22,10 +24,10 @@ namespace ServicesApp.Core.Decorators.CommandHandlerDecorators
             _resultCreationService = resultCreationService;
         }
 
-        public void Handle(TCommand command)
+        public async Task Handle(TCommand command)
         {
             _validationService.ValidateQuery<TCommand>(command);
-            _decorated.Handle(command);
+            await _decorated.Handle(command);
             _validationService.ValidateQueryResult<TCommand>(command);
            
         }

@@ -3,7 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Reflection; 
+using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,10 +24,12 @@ using ServicesApp.Core.Entities;
 using ServicesApp.Core;
 using ServicesApp.Infrastructure.Data;
 using ServicesApp.Infrastructure.Repositories;
-using ServicesApp.Core.Interfaces;
 using ServicesApp.Core.Services;
 using ServicesApp.Core.CommandsHandlers;
 using ServicesApp.Core.Extentions.DependencyInjection;
+using ServicesApp.Infrastructure.Extentions.DependencyInjection;
+using ServicesApp.Core.Abstractions.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ServicesApp.Api
 {
@@ -44,6 +46,7 @@ namespace ServicesApp.Api
         public void ConfigureServices(IServiceCollection services)
         {
 
+
             services.AddDbContext<ApplicationContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
@@ -51,12 +54,13 @@ namespace ServicesApp.Api
             });
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddCors();
 
             services.AddIdentityCore<User>()
                 .AddEntityFrameworkStores<ApplicationContext>();
 
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddDomainDependencies();
+            services.AddInfrastructureDependencies();
             
 
             services.Configure<IdentityOptions>(options =>
@@ -97,12 +101,15 @@ namespace ServicesApp.Api
                     IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
                     ValidateIssuerSigningKey = true,
                 };
-            });
+            })
+            ;
 
+            
             services.AddControllers().AddNewtonsoftJson(options => 
             {
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
+
 
         }
 

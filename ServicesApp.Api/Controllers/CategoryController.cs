@@ -4,9 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ServicesApp.Core.Entities;
-using ServicesApp.Core.Interfaces;
 using Ardalis.Result.AspNetCore;
 using Ardalis.Result;
+using ServicesApp.Core.Commands;
+using ServicesApp.Core.Abstractions.Interfaces;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -27,21 +28,23 @@ namespace ServicesApp.Api.Controllers
         }
 
         [HttpGet]
-        public Result<IAsyncEnumerable<Category>> Get()
+        public async Task<Result<object>> Get(GetCategoriesCommand command)
         {
-            throw new NotImplementedException();
-                 
+            await _commandHandler.Handle<GetCategoriesCommand>(command);
+            return command.Result;
+
         }
 
 
         [HttpGet("{id}")]
-        public async Task<Result<Category>> Get(int id)
+        public async Task<Result<object>> Get([FromRoute] GetCategoryCommand command)
         {
-            throw new NotImplementedException();
+            await _commandHandler.Handle<GetCategoryCommand>(command);
+            return command.Result;
         }
 
         [HttpGet("{id}/subcategories")]
-        public async Task<Result<IEnumerable<SubCategory>>> GetSubcategories(int id)
+        public async Task<Result<IEnumerable<Subcategory>>> GetSubcategories(int id)
         {
             throw new NotImplementedException();
         }

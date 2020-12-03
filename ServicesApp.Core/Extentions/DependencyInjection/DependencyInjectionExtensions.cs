@@ -2,17 +2,17 @@
 using ServicesApp.Core.Commands;
 using ServicesApp.Core.CommandsHandlers;
 using ServicesApp.Core.Services;
-using ServicesApp.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using ServicesApp.Core.Factories;
+using ServicesApp.Core.Abstractions.Interfaces;
 
 namespace ServicesApp.Core.Extentions.DependencyInjection
 {
-    public static class DiExtentions
+    public static class DependencyInjectionExtentions
     {
         public static IServiceCollection AddDomainDependencies(this IServiceCollection services)
         {
@@ -28,12 +28,9 @@ namespace ServicesApp.Core.Extentions.DependencyInjection
             });
 
             services.AddTransient<ICommandHandler, CommandHandlerFacade>();
-            services.AddTransient<ISubCategoryService, SubCategoryService>();
             services.AddTransient<IResultCreationService, ResultCreationService>();
             services.AddTransient<IValidationService, ValidationService>();
             services.AddScoped<ICommandHandlerFactory, CommandHandlerFactory>();
-            services.AddTransient<IAuthenticationService, AuthenticationService>();
-
             return services;
          
         }

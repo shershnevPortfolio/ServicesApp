@@ -2,27 +2,26 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using ServicesApp.Core.Abstractions.Commands;
+using ServicesApp.Core.Abstractions.Interfaces;
 using ServicesApp.Core.Entities;
-using ServicesApp.Core.Interfaces;
 using ServicesApp.Infrastructure.Data;
+using Microsoft.Extensions.DependencyInjection;
+using ServicesApp.Infrastructure.Abstractions.Interfaces;
 
 namespace ServicesApp.Infrastructure.Repositories
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
+        
         private readonly ApplicationContext _context;
 
-        private readonly ICategoryRepository _categoryRepository;
+        private readonly IRepositoryFactory<ApplicationContext> _repositoryFactory;
 
-        private readonly IRepository<SubCategory> _subCategoryRepository;
-
-        public ICategoryRepository CategoryRepository => _categoryRepository ?? new CategoryRepository(_context);
-
-        public IRepository<SubCategory> SubCategoryRepository => _subCategoryRepository ?? new BaseRepository<SubCategory>(_context);
-
-        public UnitOfWork(ApplicationContext conext)
+        public UnitOfWork(ApplicationContext context, IServiceProvider serviseProvider)
         {
-            _context = conext;
+            _context = context;
+            _repositoryFactory = serviseProvider.GetService<IRepositoryFactory<ApplicationContext>>();
         }
 
         public void SaveChanges()
@@ -41,6 +40,11 @@ namespace ServicesApp.Infrastructure.Repositories
             {
                 _context.Dispose();
             }
+        }
+
+        public IRepository<TEntity> GetRepository<TEntity>() where TEntity : BaseEntity
+        {
+            return _repositoryFactory.CreateRepositoryFor<TEntity>(_context);
         }
     }
 }

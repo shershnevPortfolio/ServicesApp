@@ -8,12 +8,12 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServicesApp.Core.Interfaces
+namespace ServicesApp.Core.Abstractions.Interfaces
 {
     internal interface IAuthenticationService
     {
-        Task<Result<IdentityResult>> RegisterUser(RegisterCommand registerData);
+        Task RegisterUser(RegisterCommand registerData);
 
-        Task<Result<UserDTO>> Login(LoginCommand loginData);
+        Task Login(LoginCommand loginData);
     }
 }

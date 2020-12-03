@@ -1,4 +1,5 @@
 ﻿using ServicesApp.Core.Abstractions.Commands;
+using ServicesApp.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,11 +7,7 @@ using System.Text;
 
 namespace ServicesApp.Core.Commands
 {
-    public class RegisterCommand : BaseCommand
+    public class CreateCategoryCommand : CreateCommand<Category>
     {
-        public string Password { get; set; }
-
-        public string UserName { get; set; }
-
     }
 }

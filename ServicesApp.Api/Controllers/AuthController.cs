@@ -7,9 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 using ServicesApp.Core.Entities;
 using AutoMapper;
 using ServicesApp.Core.DTOs;
-using ServicesApp.Core.Interfaces;
 using Ardalis.Result;
 using ServicesApp.Core.Commands;
+using ServicesApp.Core.Abstractions.Interfaces;
+using Ardalis.Result.AspNetCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,6 +18,8 @@ namespace ServicesApp.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [TranslateResultToActionResult]
+
     public class AuthController : ControllerBase
     {
         private readonly ICommandHandler _commandHandler;
@@ -28,17 +31,19 @@ namespace ServicesApp.Api.Controllers
 
         [Route("register")]
         [HttpPost]
-        public async Task Register(RegisterCommand registerData)
+        public async Task<Result<object>> Register(RegisterCommand command)
         {
-            _commandHandler.Handle<RegisterCommand>(registerData);
+            await _commandHandler.Handle<RegisterCommand>(command);
+            return command.Result;
         }
 
 
         [Route("login")]
         [HttpPost]
-        public async Task Login(LoginCommand loginData)
+        public async Task<Result<object>> Login(LoginCommand command)
         {
-            _commandHandler.Handle<LoginCommand>(loginData);
+            await _commandHandler.Handle<LoginCommand>(command);
+            return command.Result;
 
         }
     }
