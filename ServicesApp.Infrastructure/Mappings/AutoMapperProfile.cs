@@ -14,6 +14,7 @@ namespace SocialMedia.Infrastructure.Mappings
         {
             CreateMap<RegisterCommand, User>();
             CreateMap<UserDTO, User>().ReverseMap();
+            CreateMap<CreateOrderCommand, Order>();
         }
     }
 }

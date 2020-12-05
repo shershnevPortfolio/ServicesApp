@@ -17,17 +17,22 @@ namespace ServicesApp.Core.CommandsHandlers
 
         private readonly ICommandHandlerFactory _commandHandlerFactory;
 
-        public CommandHandlerFacade(IServiceProvider serviceProvider)
+        private readonly IUnitOfWork _unitOfWork;
+
+        public CommandHandlerFacade(IServiceProvider serviceProvider, IUnitOfWork unitOfWork)
         {
             _serviceProvider = serviceProvider;
             _commandHandlerFactory = _serviceProvider.GetService<ICommandHandlerFactory>();
+            _unitOfWork = unitOfWork;
         }
+
 
 
         public async Task Handle<TCommand> (TCommand command) where TCommand : BaseCommand
         {
             var handler = _commandHandlerFactory.CreateHandlerFor<TCommand>();
             await handler.Handle(command);
+            await _unitOfWork.SaveChangesAsync();
         }
     }
 }
