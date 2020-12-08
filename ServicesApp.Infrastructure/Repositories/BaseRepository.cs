@@ -9,7 +9,7 @@ using ServicesApp.Core.Abstractions.Interfaces;
 
 namespace ServicesApp.Infrastructure.Repositories
 {
-    public class BaseRepository<T> : IRepository<T> where T: BaseEntity
+    public class BaseRepository<T> : IRepository<T> where T : BaseEntity
     {
         private readonly ApplicationContext _context;
         protected readonly DbSet<T> _entities;

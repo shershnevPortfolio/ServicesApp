@@ -20,6 +20,7 @@ namespace ServicesApp.Api.Controllers
     public class SubCategoryController : ControllerBase
     {
         private readonly ICommandHandler _commandHandler;
+
         public SubCategoryController(ICommandHandler commandHandler)
         {
             _commandHandler = commandHandler;

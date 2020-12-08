@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using ServicesApp.Core.DTOs;
 using ServicesApp.Core.Entities;
 
 namespace ServicesApp.Infrastructure.Data
@@ -16,7 +17,10 @@ namespace ServicesApp.Infrastructure.Data
             }
 
             public virtual DbSet<Category> Categories { get; set; }
+
             public virtual DbSet<Subcategory> SubCategories { get; set; }
+
+            public virtual DbSet<Order> Orders { get; set; }
     }
 
 

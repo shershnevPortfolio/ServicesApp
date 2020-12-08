@@ -14,5 +14,7 @@ namespace ServicesApp.Core.Entities
 
         public virtual Category Category { get; set; }
 
+        public virtual List<Order> Orders { get; set; }
+
     }
 }
