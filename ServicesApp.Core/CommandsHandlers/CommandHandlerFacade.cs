@@ -28,7 +28,7 @@ namespace ServicesApp.Core.CommandsHandlers
 
 
 
-        public async Task Handle<TCommand> (TCommand command) where TCommand : BaseCommand
+        public async Task Handle<TCommand>(TCommand command) where TCommand : BaseCommand
         {
             var handler = _commandHandlerFactory.CreateHandlerFor<TCommand>();
             await handler.Handle(command);

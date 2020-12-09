@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ServicesApp.Core.Abstractions.Interfaces
 {
-    internal interface ICommandHandler<TCommand> where TCommand : BaseCommand
+    internal interface ICommandHandler<in TCommand> where TCommand : BaseCommand
     {
         Task Handle(TCommand command);
 

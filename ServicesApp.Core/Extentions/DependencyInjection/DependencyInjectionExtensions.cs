@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using ServicesApp.Core.Factories;
 using ServicesApp.Core.Abstractions.Interfaces;
+using ServicesApp.Core.Entities;
 
 namespace ServicesApp.Core.Extentions.DependencyInjection
 {
@@ -21,11 +22,10 @@ namespace ServicesApp.Core.Extentions.DependencyInjection
                 scan.FromCallingAssembly()
                 .AddClasses(classes => classes.AssignableTo(typeof(ICommandHandler<>)))
                 .AsImplementedInterfaces()
-
-                ;
-
-
+                .AddClasses(classes => classes.AssignableTo(typeof(ICommandHandlerService<>)))
+                .AsImplementedInterfaces();
             });
+
 
             services.AddTransient<ICommandHandler, CommandHandlerFacade>();
             services.AddTransient<IResultCreationService, ResultCreationService>();

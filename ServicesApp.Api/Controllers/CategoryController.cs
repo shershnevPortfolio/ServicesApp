@@ -52,9 +52,9 @@ namespace ServicesApp.Api.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Post(Category category)
+        public async Task Post(CreateCategoryCommand command)
         {
-            throw new NotImplementedException();
+            await _commandHandler.Handle<CreateCategoryCommand>(command);
         }
     }
 }

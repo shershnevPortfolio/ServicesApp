@@ -19,9 +19,7 @@ namespace ServicesApp.Core.Abstractions.CommandHandlers
             _visiter = visiter;
         }
 
-        public virtual async Task Handle(TCommand command)
-        {
-            await command.Accept(_visiter);
-        }
+        public abstract Task Handle(TCommand command);
+       
     }
 }

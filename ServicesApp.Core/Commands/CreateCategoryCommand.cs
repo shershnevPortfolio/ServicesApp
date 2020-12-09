@@ -9,5 +9,6 @@ namespace ServicesApp.Core.Commands
 {
     public class CreateCategoryCommand : CreateCommand<Category>
     {
+        public string Name { get; set; }
     }
 }
