@@ -6,8 +6,14 @@
 
   <ItemGroup>
     <Compile Remove="DTO`s\**" />
+    <Compile Remove="Proxies\**" />
+    <Compile Remove="Новая папка\**" />
     <EmbeddedResource Remove="DTO`s\**" />
+    <EmbeddedResource Remove="Proxies\**" />
+    <EmbeddedResource Remove="Новая папка\**" />
     <None Remove="DTO`s\**" />
+    <None Remove="Proxies\**" />
+    <None Remove="Новая папка\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Proxies\" />
+    <Folder Include="Queries\" />
   </ItemGroup>
 
 </Project>

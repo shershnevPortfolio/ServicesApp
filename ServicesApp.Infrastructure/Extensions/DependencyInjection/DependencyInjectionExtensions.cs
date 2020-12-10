@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using ServicesApp.Core.Commands;
-using ServicesApp.Core.CommandsHandlers;
+using ServicesApp.Core.CommandHandlers;
 using ServicesApp.Core.Services;
 using System;
 using System.Collections.Generic;

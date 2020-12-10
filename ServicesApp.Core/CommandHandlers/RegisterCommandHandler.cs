@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServicesApp.Core.CommandsHandlers
+namespace ServicesApp.Core.CommandHandlers
 {
     internal class RegisterCommandHandler : ICommandHandler<RegisterCommand>
     {

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using ServicesApp.Core.Commands;
 using ServicesApp.Core.Abstractions.Interfaces;
-using ServicesApp.Core.Abstractions.Commands;
+using ServicesApp.Core.Abstractions.Queries;
 
-namespace ServicesApp.Core.CommandsHandlers
+namespace ServicesApp.Core.CommandHandlers
 {
     public class CommandHandlerFacade: ICommandHandler
     {
@@ -33,6 +33,12 @@ namespace ServicesApp.Core.CommandsHandlers
             var handler = _commandHandlerFactory.CreateHandlerFor<TCommand>();
             await handler.Handle(command);
             await _unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task<TResult> Handle<TQuery, TResult>(TQuery query) where TQuery : BaseQuery<TResult> 
+        {
+            throw new NotImplementedException();
+
         }
     }
 }

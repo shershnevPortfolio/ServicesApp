@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace ServicesApp.Core.Abstractions.Queries
 {
-    public abstract class CreateCommand<TEntity> : CrudCommand where TEntity : BaseEntity
+    public class GetSingleQuery<TResult> : BaseQuery<TResult>
     {
-        public override async Task Accept(ICommandVisitor visiter)
-        {
-            await visiter.Visit<TEntity>(this);
-        }
+        public int Id { get; set; } 
     }
 }

@@ -1,17 +1,15 @@
 ﻿using ServicesApp.Core.Abstractions.Interfaces;
 using ServicesApp.Core.Entities;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ServicesApp.Core.Abstractions.Queries
 {
-    public abstract class CreateCommand<TEntity> : CrudCommand where TEntity : BaseEntity
+    public class GetEnumerableQuery<TResult> : BaseQuery<TResult> 
+        where TResult : IEnumerable
     {
-        public override async Task Accept(ICommandVisitor visiter)
-        {
-            await visiter.Visit<TEntity>(this);
-        }
     }
 }

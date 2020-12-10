@@ -4,9 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ServicesApp.Core.Commands
+namespace ServicesApp.Core.Abstractions.Interfaces
 {
-    public class CreateSubcategoryCommand : CreateCommand<Subcategory>
+    internal interface IQueryHandler<TQuery, TResult>
     {
+        TResult Handle(BaseQuery<TResult> query);
     }
 }

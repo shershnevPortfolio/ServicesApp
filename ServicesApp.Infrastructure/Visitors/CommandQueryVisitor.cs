@@ -1,6 +1,6 @@
 ﻿using Ardalis.Result;
 using AutoMapper;
-using ServicesApp.Core.Abstractions.Commands;
+using ServicesApp.Core.Abstractions.Queries;
 using ServicesApp.Core.Abstractions.Interfaces;
 using ServicesApp.Core.Commands;
 using ServicesApp.Core.Entities;

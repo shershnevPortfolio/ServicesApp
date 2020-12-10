@@ -6,7 +6,7 @@ using ServicesApp.Core.Abstractions.Interfaces;
 using ServicesApp.Core.Commands;
 using ServicesApp.Core.Entities;
 
-namespace ServicesApp.Core.CommandsHandlers
+namespace ServicesApp.Core.CommandHandlers
 {
     internal class CreateOrderCommandHandler : CreateCommandHandler<CreateOrderCommand, Order>
     {

@@ -14,7 +14,7 @@ using ServicesApp.Core.DTOs;
 using ServicesApp.Core.Entities;
 using ServicesApp.Core.Options;
 
-namespace ServicesApp.Core.CommandsHandlers
+namespace ServicesApp.Core.CommandHandlers
 {
     internal class LoginCommandHandler : ICommandHandler<LoginCommand>
     {

@@ -5,14 +5,17 @@ using ServicesApp.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace ServicesApp.Core.CommandsHandlers
+namespace ServicesApp.Core.CommandHandlers
 {
-    internal class CreateSubcategoryCommandHandler : CreateCommandHandler<CreateSubcategoryCommand, Subcategory>
+    internal class CreateCategoryCommandHandler : CreateCommandHandler<CreateCategoryCommand, Category>
     {
-        public CreateSubcategoryCommandHandler(IUnitOfWork unitOfWork, ICommandVisitor visiter, ICommandHandlerService<Subcategory> commandHandlerService) 
+        public CreateCategoryCommandHandler(IUnitOfWork unitOfWork, ICommandVisitor visiter, ICommandHandlerService<Category> commandHandlerService) 
             : base(unitOfWork, visiter, commandHandlerService)
         {
+
         }
+
     }
 }

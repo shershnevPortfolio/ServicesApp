@@ -5,7 +5,7 @@ using ServicesApp.Core.Commands;
 using Ardalis.Result;
 using System.Threading.Tasks;
 using ServicesApp.Core.Abstractions.Interfaces;
-using ServicesApp.Core.Abstractions.Commands;
+using ServicesApp.Core.Abstractions.Queries;
 
 namespace ServicesApp.Core.Decorators.CommandHandlerDecorators
 {

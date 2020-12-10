@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ServicesApp.Core.Abstractions.Commands;
+using ServicesApp.Core.Abstractions.Queries;
 using ServicesApp.Core.Abstractions.Interfaces;
 using ServicesApp.Core.Entities;
 using System;
