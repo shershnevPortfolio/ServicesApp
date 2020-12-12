@@ -6,8 +6,10 @@ using Ardalis.Result;
 using Ardalis.Result.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using ServicesApp.Core.Abstractions.Interfaces;
-using ServicesApp.Core.Commands;
+using ServicesApp.Core.Queries;
 using ServicesApp.Core.Entities;
+using ServicesApp.Core.DTOs;
+using ServicesApp.Core.Commands;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -36,9 +38,7 @@ namespace ServicesApp.Api.Controllers
         [HttpGet]
         public async Task<Result<object>> Get(GetSubcategoriesCommand command)
         {
-            await _commandHandler.Handle<GetSubcategoriesCommand>(command);
-            return command.Result;
-
+            return await _commandHandler.Handle<GetSubcategoriesCommand, IEnumerable<SubcategoryDTO>>(command);
         }
 
     }

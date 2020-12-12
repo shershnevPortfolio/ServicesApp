@@ -4,10 +4,10 @@ using System.Text;
 
 namespace ServicesApp.Core.DTOs
 {
-    public class RegisterDTO
+    public class CategoryDTO
     {
-        public string Password { get; set; }
+        public int Id { get; set; }
 
-        public string UserName { get; set; }
+        public string Name { get; set; }
     }
 }

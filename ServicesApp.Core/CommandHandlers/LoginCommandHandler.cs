@@ -9,12 +9,12 @@ using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using ServicesApp.Core.Abstractions.Interfaces;
-using ServicesApp.Core.Commands;
 using ServicesApp.Core.DTOs;
 using ServicesApp.Core.Entities;
 using ServicesApp.Core.Options;
+using ServicesApp.Core.Commands;
 
-namespace ServicesApp.Core.CommandsHandlers
+namespace ServicesApp.Core.CommandHandlers
 {
     internal class LoginCommandHandler : ICommandHandler<LoginCommand>
     {

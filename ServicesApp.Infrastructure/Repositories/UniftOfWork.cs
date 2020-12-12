@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using ServicesApp.Core.Abstractions.Commands;
+using ServicesApp.Core.Abstractions.Queries;
 using ServicesApp.Core.Abstractions.Interfaces;
 using ServicesApp.Core.Entities;
 using ServicesApp.Infrastructure.Data;

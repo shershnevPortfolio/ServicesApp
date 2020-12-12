@@ -6,8 +6,11 @@
 
   <ItemGroup>
     <Compile Remove="DTO`s\**" />
+    <Compile Remove="Proxies\**" />
     <EmbeddedResource Remove="DTO`s\**" />
+    <EmbeddedResource Remove="Proxies\**" />
     <None Remove="DTO`s\**" />
+    <None Remove="Proxies\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,10 +21,6 @@
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.8.0" />
     <PackageReference Include="Scrutor.AspNetCore" Version="1.0.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.8.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Proxies\" />
   </ItemGroup>
 
 </Project>

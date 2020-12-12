@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using System.Linq;
 using ServicesApp.Core.Abstractions.Interfaces;
+using ServicesApp.Core.Abstractions.Queries;
 using ServicesApp.Core.Abstractions.Commands;
 
 namespace ServicesApp.Core.Factories
@@ -21,6 +22,12 @@ namespace ServicesApp.Core.Factories
         public ICommandHandler<TCommand> CreateHandlerFor<TCommand>() where TCommand : BaseCommand
         {
             return _serviceProvider.GetService<ICommandHandler<TCommand>>();
-        }   
+        }
+
+        public IQueryHandler<TQuery, TResult> CreateHandlerFor<TQuery, TResult>() where TQuery : BaseQuery<TResult>
+        {
+            return _serviceProvider.GetService<IQueryHandler<TQuery, TResult>>();
+        }
     }
+
 }

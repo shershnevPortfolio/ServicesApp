@@ -5,11 +5,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServicesApp.Core.Abstractions.Commands
+namespace ServicesApp.Core.Abstractions.Queries
 {
-    public abstract class CrudCommand : BaseCommand
+    public abstract class GetSingleQuery<TResult> : BaseQuery<TResult>
     {
-       
-
+        public int Id { get; set; } 
     }
 }

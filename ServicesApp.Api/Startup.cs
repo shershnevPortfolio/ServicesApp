@@ -25,7 +25,7 @@ using ServicesApp.Core;
 using ServicesApp.Infrastructure.Data;
 using ServicesApp.Infrastructure.Repositories;
 using ServicesApp.Core.Services;
-using ServicesApp.Core.CommandsHandlers;
+using ServicesApp.Core.CommandHandlers;
 using ServicesApp.Core.Extentions.DependencyInjection;
 using ServicesApp.Infrastructure.Extentions.DependencyInjection;
 using ServicesApp.Core.Abstractions.Interfaces;

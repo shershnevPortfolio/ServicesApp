@@ -4,11 +4,7 @@ using System.Text;
 
 namespace ServicesApp.Core.DTOs
 {
-    public class LoginDTO
+    public class SubcategoryDTO
     {
-        public string UserName { get; set; }
-
-        public string Password { get; set; }
-
     }
 }

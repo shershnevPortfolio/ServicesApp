@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using AutoMapper;
-using ServicesApp.Core.Commands;
+using ServicesApp.Core.Queries;
 using ServicesApp.Core.DTOs;
 using ServicesApp.Core.Entities;
+using ServicesApp.Core.Commands;
 
 namespace SocialMedia.Infrastructure.Mappings
 {
@@ -13,8 +14,13 @@ namespace SocialMedia.Infrastructure.Mappings
         public AutomapperProfile()
         {
             CreateMap<RegisterCommand, User>();
-            CreateMap<UserDTO, User>().ReverseMap();
             CreateMap<CreateOrderCommand, Order>();
+            CreateMap<CreateCategoryCommand, Category>();
+            CreateMap<CreateSubcategoryCommand, Subcategory>();
+            CreateMap<Order, OrderDTO>();
+            CreateMap<Category, CategoryDTO>();
+            CreateMap<UserDTO, User>().ReverseMap();
+            CreateMap<Subcategory, SubcategoryDTO>();
         }
     }
 }

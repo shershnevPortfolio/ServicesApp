@@ -8,7 +8,7 @@ using System.Text;
 namespace ServicesApp.Core.Commands
 {
     public class CreateOrderCommand : CreateCommand<Order>
-    {
-      
+    { 
+        
     }
 }

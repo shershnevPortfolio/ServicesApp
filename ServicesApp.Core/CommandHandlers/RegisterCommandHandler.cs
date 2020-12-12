@@ -1,14 +1,15 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using ServicesApp.Core.Abstractions.Interfaces;
-using ServicesApp.Core.Commands;
+using ServicesApp.Core.Queries;
 using ServicesApp.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using ServicesApp.Core.Commands;
 
-namespace ServicesApp.Core.CommandsHandlers
+namespace ServicesApp.Core.CommandHandlers
 {
     internal class RegisterCommandHandler : ICommandHandler<RegisterCommand>
     {
