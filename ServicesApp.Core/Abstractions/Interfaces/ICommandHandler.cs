@@ -1,5 +1,6 @@
-﻿using ServicesApp.Core.Abstractions.Queries;
-
+﻿using Ardalis.Result;
+using ServicesApp.Core.Abstractions.Queries;
+using ServicesApp.Core.Abstractions.Commands;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ServicesApp.Core.Abstractions.Interfaces
 {
-    internal interface ICommandHandler<in TCommand> where TCommand : BaseCommand
+    internal interface ICommandHandler<TCommand> where TCommand : BaseCommand
     {
         Task Handle(TCommand command);
 
@@ -16,5 +17,7 @@ namespace ServicesApp.Core.Abstractions.Interfaces
     public interface ICommandHandler
     {
         Task Handle<TCommand>(TCommand command) where TCommand : BaseCommand;
+
+        Task<Result<TResult>> Handle<TQuery, TResult>(TQuery query) where TQuery : BaseQuery<TResult>;
     }
 }

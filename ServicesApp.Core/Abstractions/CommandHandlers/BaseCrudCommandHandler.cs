@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using ServicesApp.Core.Abstractions.Commands;
 
 namespace ServicesApp.Core.Abstractions.CommandHandlers
 {
@@ -11,12 +12,9 @@ namespace ServicesApp.Core.Abstractions.CommandHandlers
     {
         protected readonly IUnitOfWork _unitOfWork;
 
-        protected readonly ICommandVisitor _visiter;
-
-        protected BaseCrudCommandHandler(IUnitOfWork unitOfWork, ICommandVisitor visiter)
+        protected BaseCrudCommandHandler(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _visiter = visiter;
         }
 
         public abstract Task Handle(TCommand command);

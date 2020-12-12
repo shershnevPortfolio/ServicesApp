@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ServicesApp.Core.Abstractions.Interfaces;
 using ServicesApp.Core.Commands;
+using ServicesApp.Core.DTOs;
+using ServicesApp.Core.Queries;
 
 namespace ServicesApp.Api.Controllers
 {
@@ -25,19 +27,17 @@ namespace ServicesApp.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<Result<object>> Get(GetOrdersCommand command)
+        public async Task<Result<object>> Get(GetOrdersQuery query)
         {
-            await _commandHandler.Handle<GetOrdersCommand>(command);
-            return command.Result;
-
+            return await _commandHandler.Handle<GetOrdersQuery, IEnumerable<OrderDTO>>(query);
         }
 
 
         [HttpGet("{id}")]
-        public async Task<Result<object>> Get([FromRoute] GetOrderCommand command)
+        public async Task<Result<object>> Get([FromRoute] GetOrderQuery command)
         {
-            await _commandHandler.Handle<GetOrderCommand>(command);
-            return command.Result;
+           return  await _commandHandler.Handle<GetOrderQuery, OrderDTO>(command);
+
         }
 
         [HttpPost]

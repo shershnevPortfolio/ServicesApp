@@ -1,12 +1,13 @@
 ﻿using ServicesApp.Core.Abstractions.Queries;
+using ServicesApp.Core.DTOs;
 using ServicesApp.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ServicesApp.Core.Commands
+namespace ServicesApp.Core.Queries
 {
-    public class GetSubcategoriesByCategoryCommand : GetEnumerableQuery<Subcategory>
+    public class GetSubcategoryQuery : GetSingleQuery<SubcategoryDTO>
     {
     }
 }

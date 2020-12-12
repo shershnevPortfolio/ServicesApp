@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using ServicesApp.Core.Commands;
+using ServicesApp.Core.Queries;
 using ServicesApp.Core.CommandHandlers;
 using ServicesApp.Core.Services;
 using System;
@@ -21,8 +21,9 @@ namespace ServicesApp.Core.Extentions.DependencyInjection
             {
                 scan.FromCallingAssembly()
                 .AddClasses(classes => classes.AssignableTo(typeof(ICommandHandler<>)))
-                .AsImplementedInterfaces()
-                .AddClasses(classes => classes.AssignableTo(typeof(ICommandHandlerService<>)))
+                .AddClasses(classes => classes.AssignableTo(typeof(IQueryHandler<,>)))
+                //.AddClasses(classes => classes.AssignableTo(typeof(ICommandHandlerService<>)))
+                //.AddClasses(classes => classes.AssignableTo(typeof(IQueryHandlerService<>)))
                 .AsImplementedInterfaces();
             });
 
@@ -30,6 +31,8 @@ namespace ServicesApp.Core.Extentions.DependencyInjection
             services.AddTransient<ICommandHandler, CommandHandlerFacade>();
             services.AddTransient<IResultCreationService, ResultCreationService>();
             services.AddTransient<IValidationService, ValidationService>();
+            services.AddTransient(typeof(ICommandHandlerService<>), typeof(CommandHadnlerService<>));
+            services.AddTransient(typeof(IQueryHandlerService<>), typeof(QueryHandlerService<>));
             services.AddScoped<ICommandHandlerFactory, CommandHandlerFactory>();
             return services;
          

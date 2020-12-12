@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ServicesApp.Core.Abstractions.Queries;
 using ServicesApp.Core.Abstractions.Interfaces;
 using ServicesApp.Core.Entities;
+using ServicesApp.Core.Abstractions.Commands;
 
 namespace ServicesApp.Core.Abstractions.CommandHandlers
 {
@@ -16,7 +17,7 @@ namespace ServicesApp.Core.Abstractions.CommandHandlers
 
         private readonly IRepository<TEntity> _repository;
 
-        public CreateCommandHandler(IUnitOfWork unitOfWork, ICommandVisitor visiter, ICommandHandlerService<TEntity> commandHandlerService) : base(unitOfWork, visiter)
+        public CreateCommandHandler(IUnitOfWork unitOfWork, ICommandHandlerService<TEntity> commandHandlerService) : base(unitOfWork)
         {
             _commandHandlerService = commandHandlerService;
             _repository = _commandHandlerService.Repository;

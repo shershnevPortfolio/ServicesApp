@@ -5,9 +5,10 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
-using ServicesApp.Core.Commands;
-using ServicesApp.Core.Abstractions.Interfaces;
 using ServicesApp.Core.Abstractions.Queries;
+using ServicesApp.Core.Abstractions.Interfaces;
+using ServicesApp.Core.Abstractions.Commands;
+using Ardalis.Result;
 
 namespace ServicesApp.Core.CommandHandlers
 {
@@ -27,7 +28,6 @@ namespace ServicesApp.Core.CommandHandlers
         }
 
 
-
         public async Task Handle<TCommand>(TCommand command) where TCommand : BaseCommand
         {
             var handler = _commandHandlerFactory.CreateHandlerFor<TCommand>();
@@ -35,9 +35,10 @@ namespace ServicesApp.Core.CommandHandlers
             await _unitOfWork.SaveChangesAsync();
         }
 
-        public async Task<TResult> Handle<TQuery, TResult>(TQuery query) where TQuery : BaseQuery<TResult> 
+        public async Task<Result<TResult>> Handle<TQuery, TResult>(TQuery query) where TQuery : BaseQuery<TResult> 
         {
-            throw new NotImplementedException();
+            var handler = _commandHandlerFactory.CreateHandlerFor<TQuery, TResult>();
+            return await handler.Handle(query);
 
         }
     }

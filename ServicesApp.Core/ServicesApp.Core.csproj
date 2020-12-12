@@ -7,13 +7,10 @@
   <ItemGroup>
     <Compile Remove="DTO`s\**" />
     <Compile Remove="Proxies\**" />
-    <Compile Remove="Новая папка\**" />
     <EmbeddedResource Remove="DTO`s\**" />
     <EmbeddedResource Remove="Proxies\**" />
-    <EmbeddedResource Remove="Новая папка\**" />
     <None Remove="DTO`s\**" />
     <None Remove="Proxies\**" />
-    <None Remove="Новая папка\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,10 +21,6 @@
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.8.0" />
     <PackageReference Include="Scrutor.AspNetCore" Version="1.0.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.8.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Queries\" />
   </ItemGroup>
 
 </Project>

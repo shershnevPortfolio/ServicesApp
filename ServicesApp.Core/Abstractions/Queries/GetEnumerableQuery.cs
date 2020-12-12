@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ServicesApp.Core.Abstractions.Queries
 {
-    public class GetEnumerableQuery<TResult> : BaseQuery<TResult> 
+    public abstract class GetEnumerableQuery<TResult> : BaseQuery<TResult> 
         where TResult : IEnumerable
     {
     }

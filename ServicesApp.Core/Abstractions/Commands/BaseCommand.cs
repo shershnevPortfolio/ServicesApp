@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ServicesApp.Core.Abstractions.Queries
+namespace ServicesApp.Core.Abstractions.Commands
 {
     public abstract class BaseCommand
     {

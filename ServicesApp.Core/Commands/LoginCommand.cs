@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ServicesApp.Core.Abstractions.Queries;
+using ServicesApp.Core.Abstractions.Commands;
 
 namespace ServicesApp.Core.Commands
 {

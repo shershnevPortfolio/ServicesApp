@@ -5,15 +5,23 @@ using ServicesApp.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ServicesApp.Core.Abstractions.QueryHandlers
 {
-    class BaseQueryHandler<TQuery, TResult> : IQueryHandler<TQuery, TResult>
+    internal abstract class BaseQueryHandler<TQuery, TResult, TEntity> : IQueryHandler<TQuery, TResult>
+        where TQuery : BaseQuery<TResult>
+        where TEntity : BaseEntity
     {
-       
-        public TResult Handle(BaseQuery<BaseEntity, TResult> query)
+        protected readonly IQueryHandlerService<TEntity> _handlerService;
+
+        protected BaseQueryHandler(IQueryHandlerService<TEntity> handlerService)
         {
-            throw new NotImplementedException();
+            _handlerService = handlerService;
+
         }
+
+        public abstract Task<Result<TResult>> Handle(TQuery query);
+
     }
 }

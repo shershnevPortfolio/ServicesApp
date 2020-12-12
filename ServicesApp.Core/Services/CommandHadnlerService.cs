@@ -5,6 +5,7 @@ using ServicesApp.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ServicesApp.Core.Abstractions.Commands;
 
 namespace ServicesApp.Core.Services
 {

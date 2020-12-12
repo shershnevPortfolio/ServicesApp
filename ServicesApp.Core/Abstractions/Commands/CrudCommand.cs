@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServicesApp.Core.Abstractions.Queries
+namespace ServicesApp.Core.Abstractions.Commands
 {
     public abstract class CrudCommand : BaseCommand
     {
-        public abstract Task Accept(ICommandVisitor visiter);
+       
 
     }
 }

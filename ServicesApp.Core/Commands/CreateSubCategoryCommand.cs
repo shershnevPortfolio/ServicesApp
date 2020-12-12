@@ -1,4 +1,4 @@
-﻿using ServicesApp.Core.Abstractions.Queries;
+﻿using ServicesApp.Core.Abstractions.Commands;
 using ServicesApp.Core.Entities;
 using System;
 using System.Collections.Generic;

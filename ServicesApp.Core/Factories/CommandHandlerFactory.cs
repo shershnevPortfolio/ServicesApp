@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Linq;
 using ServicesApp.Core.Abstractions.Interfaces;
 using ServicesApp.Core.Abstractions.Queries;
+using ServicesApp.Core.Abstractions.Commands;
 
 namespace ServicesApp.Core.Factories
 {
