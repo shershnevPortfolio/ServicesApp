@@ -9,7 +9,7 @@ using ServicesApp.Core.Queries;
 
 namespace ServicesApp.Core.QueryHandlers
 {
-    internal class GetCategoriesQueryHandler : GetEnumerableQueryHandler<GetSubcategoriesQuery, IEnumerable<CategoryDTO>, Category>
+    internal class GetCategoriesQueryHandler : GetEnumerableQueryHandler<GetCategoriesQuery, IEnumerable<CategoryDTO>, Category>
     {
         public GetCategoriesQueryHandler(IQueryHandlerService<Category> handlerService) : base(handlerService)
         {

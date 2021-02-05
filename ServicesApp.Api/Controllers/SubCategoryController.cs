@@ -10,6 +10,7 @@ using ServicesApp.Core.Queries;
 using ServicesApp.Core.Entities;
 using ServicesApp.Core.DTOs;
 using ServicesApp.Core.Commands;
+using MediatR;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -21,24 +22,29 @@ namespace ServicesApp.Api.Controllers
     [ApiController]
     public class SubCategoryController : ControllerBase
     {
-        private readonly ICommandHandler _commandHandler;
+        private readonly IMediator _mediator;
 
-        public SubCategoryController(ICommandHandler commandHandler)
+        public SubCategoryController(IMediator mediator)
         {
-            _commandHandler = commandHandler;
+            _mediator = mediator;
         }
 
         [HttpPost]
         public async Task<Result<object>> Post(CreateSubcategoryCommand command)
         {
-            await _commandHandler.Handle<CreateSubcategoryCommand>(command);
-            return command.Result;
+           return await _mediator.Send(command);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<Result<SubcategoryDTO>> Get(GetSubcategoryQuery query) 
+        {
+            return await _mediator.Send(query);
         }
 
         [HttpGet]
-        public async Task<Result<object>> Get(GetSubcategoriesCommand command)
+        public async Task<Result<object>> Get(GetSubcategoriesQuery query)
         {
-            return await _commandHandler.Handle<GetSubcategoriesCommand, IEnumerable<SubcategoryDTO>>(command);
+            return await _mediator.Send(query);
         }
 
     }

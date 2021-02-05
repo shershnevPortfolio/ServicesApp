@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using ServicesApp.Core.Commands;
+using MediatR;
 
 namespace ServicesApp.Core.CommandHandlers
 {
@@ -26,7 +27,6 @@ namespace ServicesApp.Core.CommandHandlers
         {
             var user = _mapper.Map<User>(command);
             var result = await _userManager.CreateAsync(user, command.Password);
-            command.Result = result;
         }
     }
 }

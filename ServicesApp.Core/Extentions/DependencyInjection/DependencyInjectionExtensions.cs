@@ -7,9 +7,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using ServicesApp.Core.Factories;
 using ServicesApp.Core.Abstractions.Interfaces;
 using ServicesApp.Core.Entities;
+using MediatR;
+using MediatR.Pipeline;
 
 namespace ServicesApp.Core.Extentions.DependencyInjection
 {
@@ -17,23 +18,13 @@ namespace ServicesApp.Core.Extentions.DependencyInjection
     {
         public static IServiceCollection AddDomainDependencies(this IServiceCollection services)
         {
-            services.Scan(scan =>
-            {
-                scan.FromCallingAssembly()
-                .AddClasses(classes => classes.AssignableTo(typeof(ICommandHandler<>)))
-                .AddClasses(classes => classes.AssignableTo(typeof(IQueryHandler<,>)))
-                //.AddClasses(classes => classes.AssignableTo(typeof(ICommandHandlerService<>)))
-                //.AddClasses(classes => classes.AssignableTo(typeof(IQueryHandlerService<>)))
-                .AsImplementedInterfaces();
-            });
-
-
-            services.AddTransient<ICommandHandler, CommandHandlerFacade>();
+            services.AddTransient<IValidationService, ValidationService>();
+            services.AddTransient(typeof(ICommandHandlerService<>), typeof(CommandHadnlerService<>));
             services.AddTransient<IResultCreationService, ResultCreationService>();
             services.AddTransient<IValidationService, ValidationService>();
             services.AddTransient(typeof(ICommandHandlerService<>), typeof(CommandHadnlerService<>));
             services.AddTransient(typeof(IQueryHandlerService<>), typeof(QueryHandlerService<>));
-            services.AddScoped<ICommandHandlerFactory, CommandHandlerFactory>();
+            services.AddMediatR(Assembly.GetExecutingAssembly());
             return services;
          
         }

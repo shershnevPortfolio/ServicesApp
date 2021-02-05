@@ -44,7 +44,6 @@ namespace ServicesApp.Core.CommandHandlers
             {
                 var userId = user.Id;
                 var token = await _userManager.CreateSecurityTokenAsync(user);
-                command.Result = Result<object>.Success(new { user = _mapper.Map<UserDTO>(user), token });
                
             }
         }

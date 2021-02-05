@@ -5,10 +5,14 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using ServicesApp.Core.Abstractions.Commands;
+using MediatR;
+using System.Threading;
+using Ardalis.Result;
 
 namespace ServicesApp.Core.Abstractions.CommandHandlers
 {
-    internal abstract class BaseCrudCommandHandler<TCommand> : ICommandHandler<TCommand> where TCommand : CrudCommand
+    internal abstract class BaseCrudCommandHandler<TCommand> : IRequestHandler<TCommand, Result<Unit>>
+        where TCommand : BaseCommand
     {
         protected readonly IUnitOfWork _unitOfWork;
 
@@ -17,7 +21,6 @@ namespace ServicesApp.Core.Abstractions.CommandHandlers
             _unitOfWork = unitOfWork;
         }
 
-        public abstract Task Handle(TCommand command);
-       
+        public abstract Task<Result<Unit>> Handle(TCommand request, CancellationToken cancellationToken);
     }
 }

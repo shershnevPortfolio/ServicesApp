@@ -6,6 +6,7 @@ using ServicesApp.Core.Entities;
 using ServicesApp.Infrastructure.Data;
 using System.Threading.Tasks;
 using ServicesApp.Core.Abstractions.Interfaces;
+using ServicesApp.Core.Exceptions;
 
 namespace ServicesApp.Infrastructure.Repositories
 {
@@ -27,11 +28,14 @@ namespace ServicesApp.Infrastructure.Repositories
 
         public async Task<T> GetById(int id)
         {
-            return await _entities.FindAsync(id).AsTask();
+            var result = await _entities.FindAsync(id).AsTask();
+            if (result is null) throw new EntityNotFoundException();
+            return result;
         }
 
         public async Task Add(T entity)
         {
+
            await _entities.AddAsync(entity);
         }
         
