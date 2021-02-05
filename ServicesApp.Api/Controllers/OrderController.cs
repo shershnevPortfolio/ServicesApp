@@ -10,6 +10,8 @@ using ServicesApp.Core.Abstractions.Interfaces;
 using ServicesApp.Core.Commands;
 using ServicesApp.Core.DTOs;
 using ServicesApp.Core.Queries;
+using MediatR;
+
 
 namespace ServicesApp.Api.Controllers
 {
@@ -19,32 +21,30 @@ namespace ServicesApp.Api.Controllers
 
     public class OrderController : ControllerBase
     {
-        private readonly ICommandHandler _commandHandler;
+        private readonly IMediator _mediator;
 
-        public OrderController(ICommandHandler commandHandler)
+        public OrderController(IMediator mediator)
         {
-            _commandHandler = commandHandler;
+            _mediator = mediator;
         }
 
         [HttpGet]
         public async Task<Result<object>> Get(GetOrdersQuery query)
         {
-            return await _commandHandler.Handle<GetOrdersQuery, IEnumerable<OrderDTO>>(query);
+            return await _mediator.Send(query);
         }
 
 
         [HttpGet("{id}")]
-        public async Task<Result<object>> Get([FromRoute] GetOrderQuery command)
+        public async Task<Result<OrderDTO>> Get([FromRoute] GetOrderQuery query)
         {
-           return  await _commandHandler.Handle<GetOrderQuery, OrderDTO>(command);
-
+           return await _mediator.Send(query);
         }
 
         [HttpPost]
         public async Task<Result<object>> Create(CreateOrderCommand command)
         {
-            await _commandHandler.Handle<CreateOrderCommand>(command);
-            return command.Result;
+            return await _mediator.Send(command);
         }
 
     }

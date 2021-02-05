@@ -10,6 +10,7 @@ using ServicesApp.Core.Queries;
 using ServicesApp.Core.Commands;
 using ServicesApp.Core.Abstractions.Interfaces;
 using ServicesApp.Core.DTOs;
+using MediatR;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -22,24 +23,25 @@ namespace ServicesApp.Api.Controllers
 
     public class CategoryController : ControllerBase
     {
-        private readonly ICommandHandler _commandHandler;
+        private readonly IMediator _mediator;
 
-        public CategoryController(ICommandHandler commandHandler)
+        public CategoryController(IMediator mediator)
         {
-            _commandHandler = commandHandler;
+            _mediator = mediator;
         }
 
         [HttpGet]
-        public async Task<Result<object>> Get(GetSubcategoriesQuery query)
+        public async Task<Result<object>> Get(GetCategoriesQuery query)
         {
-           return  await _commandHandler.Handle<GetSubcategoriesQuery, IEnumerable<CategoryDTO>>(query);
+            return await _mediator.Send(query);
         }
 
 
         [HttpGet("{id}")]
-        public async Task<Result<object>> Get([FromRoute] GetCategoryQuery query)
+        public async Task<Result<CategoryDTO>> Get([FromRoute] GetCategoryQuery query)
         {
-            return await _commandHandler.Handle<GetCategoryQuery, CategoryDTO>(query);
+            var result = await _mediator.Send(query);
+            return result;
         }
 
         [HttpGet("{id}/subcategories")]
@@ -51,9 +53,9 @@ namespace ServicesApp.Api.Controllers
 
 
         [HttpPost]
-        public async Task Post(CreateCategoryCommand command)
+        public async Task<Result<object>> Post(CreateCategoryCommand command)
         {
-            await _commandHandler.Handle<CreateCategoryCommand>(command);
+            return await _mediator.Send(command);
         }
     }
 }

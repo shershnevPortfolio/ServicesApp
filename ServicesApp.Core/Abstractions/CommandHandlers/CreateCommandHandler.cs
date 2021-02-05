@@ -6,6 +6,9 @@ using ServicesApp.Core.Abstractions.Queries;
 using ServicesApp.Core.Abstractions.Interfaces;
 using ServicesApp.Core.Entities;
 using ServicesApp.Core.Abstractions.Commands;
+using Ardalis.Result;
+using MediatR;
+using System.Threading;
 
 namespace ServicesApp.Core.Abstractions.CommandHandlers
 {
@@ -23,9 +26,12 @@ namespace ServicesApp.Core.Abstractions.CommandHandlers
             _repository = _commandHandlerService.Repository;
         }
 
-        public async  override Task Handle(TCommand command)
+
+        public async override Task<Result<Unit>> Handle(TCommand request, CancellationToken cancellationToken) 
         {
-             await _repository.Add(_commandHandlerService.MapToDomain(command));
+
+            await _repository.Add(_commandHandlerService.MapToDomain(request));
+            return new Unit();
         }
 
     }

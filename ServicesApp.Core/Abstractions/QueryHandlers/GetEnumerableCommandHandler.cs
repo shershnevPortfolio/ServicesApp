@@ -6,6 +6,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ServicesApp.Core.Abstractions.QueryHandlers
@@ -21,7 +22,7 @@ namespace ServicesApp.Core.Abstractions.QueryHandlers
             _repository = _handlerService.Repository;
         }
 
-        public async override Task<Result<TResult>> Handle(TQuery query)
+        public async override Task<Result<TResult>> Handle(TQuery request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

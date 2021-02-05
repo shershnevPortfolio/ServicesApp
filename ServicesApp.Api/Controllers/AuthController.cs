@@ -11,6 +11,7 @@ using Ardalis.Result;
 using ServicesApp.Core.Commands;
 using ServicesApp.Core.Abstractions.Interfaces;
 using Ardalis.Result.AspNetCore;
+using MediatR;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -23,19 +24,18 @@ namespace ServicesApp.Api.Controllers
 
     public class AuthController : ControllerBase
     {
-        private readonly ICommandHandler _commandHandler;
+        private readonly IMediator _mediator;
 
-        public AuthController(ICommandHandler commandHandler)
+        public AuthController(IMediator mediator)
         {
-            _commandHandler = commandHandler;
+            _mediator = mediator;
         }
 
         [Route("register")]
         [HttpPost]
         public async Task<Result<object>> Register(RegisterCommand command)
         {
-            await _commandHandler.Handle<RegisterCommand>(command);
-            return command.Result;
+            return await _mediator.Send(command);
         }
 
 
@@ -43,9 +43,7 @@ namespace ServicesApp.Api.Controllers
         [HttpPost]
         public async Task<Result<object>> Login(LoginCommand command)
         {
-            await _commandHandler.Handle<LoginCommand>(command);
-            return command.Result;
-
+            return await _mediator.Send(command);
         }
     }
 }

@@ -5,11 +5,13 @@ using ServicesApp.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using MediatR;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace ServicesApp.Core.Abstractions.QueryHandlers
 {
-    internal abstract class BaseQueryHandler<TQuery, TResult, TEntity> : IQueryHandler<TQuery, TResult>
+    internal abstract class BaseQueryHandler<TQuery, TResult, TEntity> : IRequestHandler<TQuery, Result<TResult>>
         where TQuery : BaseQuery<TResult>
         where TEntity : BaseEntity
     {
@@ -20,8 +22,8 @@ namespace ServicesApp.Core.Abstractions.QueryHandlers
             _handlerService = handlerService;
 
         }
+        public abstract Task<Result<TResult>> Handle(TQuery request, CancellationToken cancellationToken);
 
-        public abstract Task<Result<TResult>> Handle(TQuery query);
-
+        
     }
 }

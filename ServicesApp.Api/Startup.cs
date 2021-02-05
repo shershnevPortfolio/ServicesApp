@@ -16,7 +16,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using ServicesApp.Core.Factories;
 using Newtonsoft;
 using AutoMapper;
 using ServicesApp.Core.Options;
@@ -30,6 +29,7 @@ using ServicesApp.Core.Extentions.DependencyInjection;
 using ServicesApp.Infrastructure.Extentions.DependencyInjection;
 using ServicesApp.Core.Abstractions.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+
 
 namespace ServicesApp.Api
 {
@@ -139,10 +139,5 @@ namespace ServicesApp.Api
 
         
     }
-    internal class HandlerResolver : IHandlerResolver
-    {
-    }
-    internal interface IHandlerResolver
-    {
-    }
+
 }

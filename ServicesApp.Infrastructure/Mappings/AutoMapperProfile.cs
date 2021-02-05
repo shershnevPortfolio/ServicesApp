@@ -17,6 +17,7 @@ namespace SocialMedia.Infrastructure.Mappings
             CreateMap<CreateOrderCommand, Order>();
             CreateMap<CreateCategoryCommand, Category>();
             CreateMap<CreateSubcategoryCommand, Subcategory>();
+            CreateMap<CreateOrderCommand, Order>();
             CreateMap<Order, OrderDTO>();
             CreateMap<Category, CategoryDTO>();
             CreateMap<UserDTO, User>().ReverseMap();
