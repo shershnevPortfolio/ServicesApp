@@ -29,9 +29,9 @@ namespace ServicesApp.Infrastructure.Repositories
             _context.SaveChanges();
         }
 
-        public Task SaveChangesAsync()
+        public async Task SaveChangesAsync()
         {
-            return _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
         public void Dispose()

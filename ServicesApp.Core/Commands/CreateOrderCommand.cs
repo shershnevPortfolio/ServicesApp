@@ -9,6 +9,6 @@ namespace ServicesApp.Core.Commands
 {
     public class CreateOrderCommand : CreateCommand<Order>
     { 
-        
+        public int SubcategoryId { get; set; }
     }
 }

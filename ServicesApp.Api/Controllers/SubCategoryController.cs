@@ -36,7 +36,7 @@ namespace ServicesApp.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<Result<SubcategoryDTO>> Get(GetSubcategoryQuery query) 
+        public async Task<Result<SubcategoryDTO>> Get([FromRoute] GetSubcategoryQuery query) 
         {
             return await _mediator.Send(query);
         }

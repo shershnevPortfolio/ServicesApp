@@ -103,7 +103,6 @@ namespace ServicesApp.Api
                 };
             })
             ;
-
             
             services.AddControllers().AddNewtonsoftJson(options => 
             {
