@@ -9,9 +9,9 @@ using ServicesApp.Core.Queries;
 
 namespace ServicesApp.Core.QueryHandlers
 {
-    internal class GetOrderQueryHandler : GetSingleQueryHandler<GetOrderQuery, OrderDTO, Category>
+    internal class GetOrderQueryHandler : GetSingleQueryHandler<GetOrderQuery, OrderDTO, Order>
     {
-        public GetOrderQueryHandler(IQueryHandlerService<Category> handlerService) : base(handlerService)
+        public GetOrderQueryHandler(IQueryHandlerService<Order> handlerService) : base(handlerService)
         {
         }
     }
