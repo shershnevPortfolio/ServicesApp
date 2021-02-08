@@ -7,6 +7,7 @@ using ServicesApp.Infrastructure.Data;
 using System.Threading.Tasks;
 using ServicesApp.Core.Abstractions.Interfaces;
 using ServicesApp.Core.Exceptions;
+using ServicesApp.Core.Abstractions.Specifications.UpdateSpecifications;
 
 namespace ServicesApp.Infrastructure.Repositories
 {
@@ -46,8 +47,15 @@ namespace ServicesApp.Infrastructure.Repositories
 
         public async Task Delete(int id)
         {
-            T entity = await GetById(id);
+            var entity = await GetById(id);
             _entities.Remove(entity);
+        }
+
+        public async Task Update(int id, UpdateSpecification<T> specification)
+        {
+            var entity = await GetById(id);
+            specification.Apply(entity);
+            Update(entity);
         }
     }
 }

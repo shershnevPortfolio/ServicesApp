@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using ServicesApp.Core.Entities;
+using ServicesApp.Core.Abstractions.Specifications.UpdateSpecifications;
 
 namespace ServicesApp.Core.Abstractions.Interfaces
 {
@@ -17,5 +18,7 @@ namespace ServicesApp.Core.Abstractions.Interfaces
         void Update(T entity);
 
         Task Delete(int id);
+
+        Task Update(int id, UpdateSpecification<T> specification);
     }
 }

@@ -12,7 +12,6 @@ namespace ServicesApp.Core.Abstractions.ExceptionHandlers
     abstract internal class BaseExceptionHandler<TRequest, TResponse, TException> : IRequestExceptionHandler<TRequest, TResponse, TException> where TException : Exception
     {
         protected readonly ResultStatus _resultStatus; 
-
         protected ReadOnlyDictionary<ResultStatus, string> resultStatusStringValues = new ReadOnlyDictionary<ResultStatus, string>(new Dictionary<ResultStatus, string> { 
             {ResultStatus.NotFound, "NotFound"}, 
             {ResultStatus.Forbidden, "Forbiden"}, 
