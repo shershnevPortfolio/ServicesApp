@@ -57,5 +57,12 @@ namespace ServicesApp.Api.Controllers
         {
             return await _mediator.Send(command);
         }
+
+        [HttpPatch]
+
+        public async Task<Result<object>> Update(UpdateCategoryCommand command) 
+        {
+            return await _mediator.Send(command);
+        }
     }
 }

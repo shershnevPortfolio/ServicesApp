@@ -20,4 +20,6 @@ namespace ServicesApp.Core.Entities
 
     }
 
+   
+
 }
